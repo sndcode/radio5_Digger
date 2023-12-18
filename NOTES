@@ -1,0 +1,88 @@
+countries
+https://radiooooo.com/language/countries/en.json
+
+==============================================================================
+
+countries by decade per mood
+https://radiooooo.com/country/mood?decade=1970
+
+==============================================================================
+
+track info
+https://radiooooo.com/track/6475170bf111ddc335a046b4
+
+==============================================================================
+
+contributor info
+https://radiooooo.com/contributor/5d3306de06fb03d8871fd11a
+
+==============================================================================
+
+contr follow count
+https://radiooooo.com/follow/count/5d3306de06fb03d8871fd11a
+
+==============================================================================
+
+cover image | large - medium - thumb
+https://asset.radiooooo.com/cover/SWE/1970/large/33faa510-2598-4dd7-a2b7-444af93bc564_1.jpg
+
+==============================================================================
+
+user image | large - medium - thumb
+https://asset.radiooooo.com/user/1409/medium/591103d5-455f-446a-a30d-7345ccd70400_19.jpg
+
+==============================================================================
+
+country + mood + decade play
+https://radiooooo.com/play
+
+mode    explore
+moods   ["SLOW", "FAST"]
+track_id
+isocodes    ["SWE"]
+island
+decades [1970]
+
+mode=explore&moods=%5B%22SLOW%22%2C%20%22FAST%22%5D&track_id=&isocodes=%5B%22SWE%22%5D&island=&decades=%5B1970%5D
+
+==============================================================================
+
+random (mood can be changed!)
+https://radiooooo.com/play/random
+
+decades
+isocodes
+island
+track_id
+mode    random
+moods   ["SLOW", "FAST", "WEIRD"]
+
+decades=&isocodes=&island=&track_id=&mode=random&moods=%5B%22SLOW%22%2C%20%22FAST%22%2C%20%22WEIRD%22%5D
+
+==============================================================================
+
+NOW == 2020 decade
+
+==============================================================================
+
+list of islands
+https://radiooooo.com/language/islands/en.json
+
+==============================================================================
+
+islands play
+https://radiooooo.com/play
+
+isocodes
+island  654df788bf79bf2642c8301d
+track_id
+decades
+moods   ["SLOW", "FAST"]
+mode    islands
+
+isocodes=&island=654df788bf79bf2642c8301d&track_id=&decades=&moods=%5B%22SLOW%22%2C%20%22FAST%22%5D&mode=islands
+
+==============================================================================
+
+
+we're fucking doing it in tty shit
