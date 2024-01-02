@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/country/mood?decade=1970
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 02 Jan 2024 10:44:44 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"a55-I34udPiXTQIxYgJ4uzmMqImidn4"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3A36687fec-1efe-4b5a-a883-146d43317be4.udNJQhiZpo%2BJymP134CPQq6PC59%2Ft9IgKmwLpgwdkxQ;
+        Path=/; Expires=Thu, 01 Feb 2024 10:44:44 GMT; HttpOnly
+    body:
+      encoding: ASCII-8BIT
+      string: '{"SLOW":["DOM","TUN","SOM","MYS","CZE","PAK","BFA","KWT","ISL","NIC","TGO","SUR","CAF","JPN","MUS","FIN","BEL","SYC","TLS","DZA","PHL","RUS","GBR","UKR","ZWE","CHL","AZE","BEN","BLZ","GNB","KHM","FRA","COM","PER","NPL","DMA","SLV","SDN","GRC","REU","BRA","CBE","COD","USA","UZB","LTU","MKD","MOZ","MRT","LKA","GTM","UMI","FWI","WSM","THA","ARM","MMR","BOL","VNM","COG","MEX","BGD","EWI","NGA","KAZ","DEU","PYF","LBN","ROU","HWA","BGR","CIV","RHS","NCL","ZAI","CHE","SVK","COL","IND","AFG","CHN","TKM","UGA","LBR","GLP","ATA","NOR","BTN","SYR","MNG","ARG","MLI","TZA","HTI","KN1","CMR","JAM","GUM","VUT","MAR","PRI","MTQ","PRK","YEM","TTO","SCG","KGZ","ISR","SLE","MDA","NER","BRN","LAO","BHS","GMB","CPV","IRL","GRL","NLD","TWN","PNG","MLT","MWI","PRT","GEO","GUF","ZMB","CUB","EGY","MDG","SLB","NZL","ESP","KEN","SGP","GIN","ECU","GAB","HKG","CRI","UPP","CAN","BDI","ETH","ZAF","VEN","LBY","HUN","AUS","PRY","ALB","PAN","YUG","CYP","POL","FJI","DAH","GHA","AGO","GUY","EST","TUR","TJK","LVA","BRB","SAU","ITA","DNK","HND","BLR","IRQ","SEN","AUT","IRN","RWA","SWE","IDN","KOR","TCH","URY","RDA","HRV"],"FAST":["RUS","OMN","NIC","DNK","MDG","CAN","PRY","IND","SYR","MLI","PER","ZMB","TTO","ROU","PRI","COD","MYS","CHN","GAB","CHL","COG","LBY","TGO","YUG","GLP","AUT","BOL","AFG","SWE","LBR","COL","EST","NER","ZAF","GUY","MTQ","MEX","TWN","CRI","SLE","USA","PHL","GMB","BHS","URY","MNG","HKG","ZAI","NLD","SAU","DMA","YEM","MDA","FWI","PAK","GHA","ARM","ARG","SUR","LVA","ITA","LKA","BEL","SLV","IDN","SEN","TKM","RHS","VNM","DOM","FIN","LTU","NOR","ESP","UKR","DEU","KAZ","GNB","FJI","KGZ","KHM","SOM","CPV","HTI","VEN","HUN","AUS","AZE","UPP","CUB","UZB","GRC","ZWE","HND","IRN","TCH","CMR","DZA","CHE","ABW","MAR","CAF","NZL","REU","TZA","ECU","KOR","SGP","KEN","ETH","ISR","IRQ","IRL","MWI","BGR","BRB","MLT","JPN","BFA","DAH","HRV","EGY","AGO","RDA","BLR","LBN","PAN","JAM","FRA","CYP","BGD","EWI","PRT","BEN","MMR","STP","THA","BRA","TUR","ISL","HWA","SDN","PNG","GEO","CIV","TUN","NGA","MRT","MUS","GBR","GUF","GTM","GIN","ERI","POL"],"WEIRD":["PRT","BDI","IRL","LTU","SOM","KAM","ZAF","SWE","IDN","LKA","AUS","MYS","YUG","HUN","IND","CMR","TTO","VNM","COL","ISL","GBR","VEN","GRC","EST","KHM","AZE","EWI","USA","JPN","SYR","AFG","BEN","SGP","NGA","LVA","MDG","FIN","ZWE","GLP","UKR","CAN","KOR","RUS","CHE","KEN","IRN","NLD","MAR","TWN","CUB","ETH","GUY","FRA","ISR","ITA","NPL","PAN","PAK","RDA","AGO","ESP","HTI","LBN","BRA","DEU","ARG","ZMB","POL","TUR","DNK","ARM","JAM","BEL","TCH","LUX","GHA","GTM","BHS","MDA","CHN","SEN","MEX","FWI","KAZ","PHL","SLV","ECU","PNG","HWA","THA","EGY","GIN","MLI","BGR","HKG","MUS","GEO","PER","IRQ"]}'
+  recorded_at: Tue, 02 Jan 2024 10:44:44 GMT
+recorded_with: VCR 6.2.0

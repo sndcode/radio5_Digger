@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "(desc)"
   spec.license = "MIT"
 
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 2.7"
 
   spec.files = Dir.glob("lib/**/*") + %w[README.md CHANGELOG.md LICENSE]
   spec.require_paths = ["lib"]
