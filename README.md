@@ -18,6 +18,16 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 (usage)
 
+## TODO
+- [x] HTTP client without 3rd-party dependencies
+- [x] Basic API client (no auth)
+- [x] Add countries support
+- [x] Add islands support
+- [ ] Add tracks support
+- [ ] Add users support
+- [ ] Add auth support to API client
+- [ ] Add data endpoints that require auth
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
