@@ -14,7 +14,7 @@ RSpec.describe Radio5::Client::Countries do
         expect(subject.size).to be > 200
 
         subject.each do |iso_code, country|
-          expect(iso_code).to be_filled_string
+          expect(iso_code).to be_country_iso_code
           expect(country).to match(
             name: be_filled_string,
             exist: be_boolean,
@@ -25,14 +25,14 @@ RSpec.describe Radio5::Client::Countries do
     end
   end
 
-  describe "#countries_per_decade" do
-    subject { client.countries_per_decade(decade) }
+  describe "#countries_for_decade" do
+    subject { client.countries_for_decade(decade) }
 
     context "with invalid decade value" do
-      let(:decade) { "xyz" }
+      let(:decade) { :xyz }
 
       it "raises an error" do
-        expect { subject }.to raise_error(ArgumentError, "decade `xyz` should be an Integer")
+        expect { subject }.to raise_error(ArgumentError, "decade `:xyz` should be an Integer")
       end
     end
 
@@ -47,14 +47,43 @@ RSpec.describe Radio5::Client::Countries do
     context "with supported decade" do
       let(:decade) { 1970 }
 
-      it "returns mood-to-countries hash" do
-        vcr("client/countries_per_decade/#{decade}") do
-          expect(subject.keys.sort).to eq Radio5::MOODS
+      context "when grouped by mood" do
+        it "returns mood-to-countries hash" do
+          vcr("client/countries_for_decade/#{decade}") do
+            expect(subject).to_not be_empty
 
-          subject.each do |mood, countries|
-            expect(countries).to_not be_empty
-            expect(countries).to all be_filled_string
+            subject.each do |mood, countries|
+              expect(Radio5::MOODS).to include(mood)
+
+              expect(countries).to_not be_empty
+              expect(countries).to all be_country_iso_code
+            end
           end
+        end
+      end
+
+      context "when grouped by country" do
+        subject { client.countries_for_decade(decade, group_by: :country) }
+
+        it "returns country-to-moods hash" do
+          vcr("client/countries_for_decade/#{decade}") do
+            expect(subject).to_not be_empty
+
+            subject.each do |country, moods|
+              expect(country).to be_country_iso_code
+
+              expect(moods).to_not be_empty
+              expect(moods).to all satisfy { |mood| Radio5::MOODS.include?(mood) }
+            end
+          end
+        end
+      end
+
+      context "when unsupported `group_by` value provided" do
+        subject { client.countries_for_decade(decade, group_by: :xyz) }
+
+        it "raises an error" do
+          expect { subject }.to raise_error(ArgumentError, "unsupported `group_by` value: `:xyz`")
         end
       end
     end

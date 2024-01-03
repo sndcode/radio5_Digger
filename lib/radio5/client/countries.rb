@@ -16,21 +16,39 @@ module Radio5
         end
       end
 
-      def countries_per_decade(decade)
+      def countries_for_decade(decade, group_by: :mood)
         unless decade.is_a?(Integer)
-          raise ArgumentError, "decade `#{decade}` should be an Integer"
+          raise ArgumentError, "decade `#{decade.inspect}` should be an Integer"
         end
 
         unless DECADES.include?(decade)
-          raise ArgumentError, "decade `#{decade}` should be in the range from #{DECADES.first} to #{DECADES.last}"
+          raise ArgumentError, "decade `#{decade.inspect}` should be in the range from #{DECADES.first} to #{DECADES.last}"
+        end
+
+        # optimization to avoid doing this inside `case` to save HTTP request
+        unless [:mood, :country].include?(group_by)
+          raise ArgumentError, "unsupported `group_by` value: `#{group_by.inspect}`"
         end
 
         response = api.get("/country/mood", query_params: {decade: decade})
         json = JSON.parse(response.body)
 
-        json.transform_keys do |mood_string|
+        grouped_by_mood = json.transform_keys do |mood_string|
           MOODS_MAPPING.fetch(mood_string) do
             raise ArgumentError, "unknown mood `#{mood_string}`"
+          end
+        end
+
+        case group_by
+        when :mood
+          grouped_by_mood
+        when :country
+          grouped_by_country = Hash.new { |hash, country| hash[country] = [] }
+
+          MOODS.each_with_object(grouped_by_country) do |mood, grouped_by_country|
+            grouped_by_mood[mood].each do |country|
+              grouped_by_country[country] << mood
+            end
           end
         end
       end
