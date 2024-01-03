@@ -4,9 +4,9 @@ require "spec_helper"
 
 RSpec.describe Radio5::Utils do
   describe "#parse_asset_url" do
-    subject { described_class.parse_asset_url(hash, key) }
-
     let(:key) { "icon" }
+
+    subject { described_class.parse_asset_url(hash, key) }
 
     context "when asset node exists" do
       context "when asset fields are present" do
