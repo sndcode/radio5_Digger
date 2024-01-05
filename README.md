@@ -23,7 +23,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 - [x] Basic API client (no auth)
 - [x] Add countries support
 - [x] Add islands support
-- [ ] Add tracks support
+- [x] Add tracks support
 - [ ] Add users support
 - [ ] Add auth support to API client
 - [ ] Add data endpoints that require auth
