@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://radiooooo.com/play
+    body:
+      encoding: UTF-8
+      string: '{"mode":"islands","island":"5d330a3e06fb03d8872a330d","moods":["FAST","SLOW","WEIRD"]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 05 Jan 2024 14:40:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '904'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - X-HTTP-Method-Override, Accept-Encoding
+      Etag:
+      - W/"388-SVJpkz1UoKqDbrDlqGq0LJHQyno"
+      Set-Cookie:
+      - connect.sid=s%3Af1475384-3e99-4433-8f42-27742521718a.fqO90JRhPYQBr9xkqflbeN8auC%2B9VsV56wxO0PV0L0Q;
+        Path=/; Expires=Sun, 04 Feb 2024 14:40:11 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"_id":"5d330a4e06fb03d8872a4460","mood":"SLOW","title":"Trousse chemise","artist":"Charles
+        Aznavour","album":"Alleluia","songwriter":"Jacques Mareuil/Charles Aznavour","label":"Barclay","country":"FRA","year":"1962","decade":1960,"length":144,"uuid":"8596fdc8-24bd-4059-9a84-8f276fbe0310","ext":{"track":"m4a","cover":"jpg"},"image":{"path":"cover/FRA/1960/","filename":"8596fdc8-24bd-4059-9a84-8f276fbe0310.jpg","color":"#384848"},"likes":42,"profile_id":"5d3306de06fb03d8871fd11a","cover":{"path":"cover/FRA/1960/","filename":"8596fdc8-24bd-4059-9a84-8f276fbe0310.jpg","color":"#384848"},"image_v":0,"liked":0,"links":{"mpeg":"https://radiooooo-track.b-cdn.net/FRA/1960/8596fdc8-24bd-4059-9a84-8f276fbe0310.m4a?token=ydD72LCGHBMMXfIco7wwdQ&expires=1704466511","ogg":"https://radiooooo-track.b-cdn.net/FRA/1960/8596fdc8-24bd-4059-9a84-8f276fbe0310.ogg?token=oWnL07WKBX6XklqwHEaI6Q&expires=1704466511"}}'
+  recorded_at: Fri, 05 Jan 2024 14:40:11 GMT
+recorded_with: VCR 6.2.0

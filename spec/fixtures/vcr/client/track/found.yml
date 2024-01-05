@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/track/play/5d330a4506fb03d8872a333d
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 05 Jan 2024 10:55:52 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '981'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"3d5-5/NmN4mV5Xt2ScW8Vk+P3BHvvns"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3A4cfdc3c3-642a-47df-9a7d-eaf7688af090.r9YTazpd2LvlWQ2e7cryE5nCLA8UJIMFGhwU6PsXYls;
+        Path=/; Expires=Sun, 04 Feb 2024 10:55:52 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"_id":"5d330a4506fb03d8872a333d","mood":"SLOW","created":{"user_id":"5d3306de06fb03d8871fd110","date":"2014-06-30T09:46:19.000Z"},"title":"Lasati-ma
+        la domni!","artist":"Nicolae Bretan","album":"Horia","songwriter":"","label":"Nimbus
+        Label","country":"ROU","info":"","year":"1998","decade":1990,"length":246,"uuid":"be659c56-561a-481b-a150-78244173e4ef","ext":{"track":"mp3","cover":"jpg"},"image":{"path":"cover/ROU/1990/","filename":"be659c56-561a-481b-a150-78244173e4ef.jpg","color":"#182828"},"likes":41,"profile_id":"5d3306de06fb03d8871fd111","cover":{"path":"cover/ROU/1990/","filename":"be659c56-561a-481b-a150-78244173e4ef.jpg","color":"#182828"},"image_v":0,"liked":0,"links":{"mpeg":"https://radiooooo-track.b-cdn.net/ROU/1990/be659c56-561a-481b-a150-78244173e4ef.mp3?token=3snb_v6FQ1r8kWXii8C8Gw&expires=1704453052#t=,20","ogg":"https://radiooooo-track.b-cdn.net/ROU/1990/be659c56-561a-481b-a150-78244173e4ef.ogg?token=IUVJ_PqnauXPq5uwpMRI9Q&expires=1704453052#t=,20"}}'
+  recorded_at: Fri, 05 Jan 2024 10:55:52 GMT
+recorded_with: VCR 6.2.0

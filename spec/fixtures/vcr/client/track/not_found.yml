@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/track/play/5d330a4506fb03d887233333
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 05 Jan 2024 11:23:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '33'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"21-3UylWRoNPCxInpIbq+GN5YyR/T8"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3Ad6fe3b47-bbb7-4364-a717-16520a7f8975.rWfU8qedB4CmHmR6bVBtJ2ywf3TDXn3Ln7XWv1tdfaM;
+        Path=/; Expires=Sun, 04 Feb 2024 11:23:13 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"error":"No track with this id"}'
+  recorded_at: Fri, 05 Jan 2024 11:23:13 GMT
+recorded_with: VCR 6.2.0

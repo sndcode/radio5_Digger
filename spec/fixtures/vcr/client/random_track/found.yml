@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://radiooooo.com/play
+    body:
+      encoding: UTF-8
+      string: '{"mode":"explore","isocodes":[],"decades":[],"moods":["FAST","SLOW","WEIRD"]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 05 Jan 2024 13:21:51 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '887'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - X-HTTP-Method-Override, Accept-Encoding
+      Etag:
+      - W/"377-mQunCtQS97uO+BUStJ2Pa3RarlU"
+      Set-Cookie:
+      - connect.sid=s%3Ae9890551-0133-46a8-82f2-8fb40a258dab.nUeUFB43ad1pN%2BN03%2FCvmUcHyHrX2q%2FcLGWRBGf15W8;
+        Path=/; Expires=Sun, 04 Feb 2024 13:21:51 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"_id":"5d330a7306fb03d8872a9052","mood":"SLOW","title":"The Last Roundup","artist":"Gene
+        Autry","album":"The Last Roundup","songwriter":"Billy Hill","label":"Conqueror","country":"USA","year":"1933","decade":1930,"length":204,"uuid":"3f239910-5c2e-4c65-bbcd-16e0200f6de7","ext":{"track":"mp3","cover":"jpg"},"image":{"path":"cover/USA/1930/","filename":"3f239910-5c2e-4c65-bbcd-16e0200f6de7.jpg","color":"#481818"},"likes":23,"profile_id":"5d3307a006fb03d8872210c9","cover":{"path":"cover/USA/1930/","filename":"3f239910-5c2e-4c65-bbcd-16e0200f6de7.jpg","color":"#481818"},"image_v":0,"liked":0,"links":{"mpeg":"https://radiooooo-track.b-cdn.net/USA/1930/3f239910-5c2e-4c65-bbcd-16e0200f6de7.mp3?token=arFsJJsRDVzWNTT5hwvTpg&expires=1704461811","ogg":"https://radiooooo-track.b-cdn.net/USA/1930/3f239910-5c2e-4c65-bbcd-16e0200f6de7.ogg?token=8qF3ZBSfLVYwAVTGw6wAXA&expires=1704461811"}}'
+  recorded_at: Fri, 05 Jan 2024 13:21:51 GMT
+recorded_with: VCR 6.2.0

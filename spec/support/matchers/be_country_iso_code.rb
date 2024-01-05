@@ -2,6 +2,6 @@
 
 RSpec::Matchers.define :be_country_iso_code do
   match do |actual|
-    actual.is_a?(String) && actual.size == 3
+    Radio5::Validator.country_iso_code?(actual)
   end
 end

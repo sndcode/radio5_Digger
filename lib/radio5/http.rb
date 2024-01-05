@@ -6,7 +6,7 @@ require "uri"
 
 module Radio5
   class Http
-    class UnexpectedResponseError < StandardError; end
+    class NotOkResponseError < StandardError; end
 
     DEFAULT_HOST = "radiooooo.com"
     DEFAULT_PORT = 443
@@ -22,11 +22,11 @@ module Radio5
     RETRIABLE_ERRORS = [
       Errno::ECONNREFUSED,
       Errno::ECONNRESET,
+      Errno::ETIMEDOUT,
       Net::OpenTimeout,
       Net::ReadTimeout,
       Net::WriteTimeout,
-      OpenSSL::SSL::SSLError,
-      UnexpectedResponseError
+      OpenSSL::SSL::SSLError
     ]
 
     attr_reader :max_retries
@@ -126,7 +126,7 @@ module Radio5
       response = @http.request(request)
 
       if response.code != "200"
-        raise UnexpectedResponseError, "code: #{response.code}, body: #{response.body}"
+        raise NotOkResponseError, "code: #{response.code}, body: #{response.body}"
       end
 
       response

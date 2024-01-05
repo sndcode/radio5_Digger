@@ -29,18 +29,10 @@ RSpec.describe Radio5::Client::Countries do
     subject { client.countries_for_decade(decade) }
 
     context "with invalid decade value" do
-      let(:decade) { :xyz }
-
-      it "raises an error" do
-        expect { subject }.to raise_error(ArgumentError, "decade `:xyz` should be an Integer")
-      end
-    end
-
-    context "with out of scope decade" do
       let(:decade) { 1890 }
 
       it "raises an error" do
-        expect { subject }.to raise_error(ArgumentError, "decade `1890` should be in the range from 1900 to 2020")
+        expect { subject }.to raise_error(ArgumentError, "invalid decade: 1890")
       end
     end
 
@@ -53,7 +45,7 @@ RSpec.describe Radio5::Client::Countries do
             expect(subject).to_not be_empty
 
             subject.each do |mood, countries|
-              expect(Radio5::MOODS).to include(mood)
+              expect(mood).to be_mood
 
               expect(countries).to_not be_empty
               expect(countries).to all be_country_iso_code
@@ -73,7 +65,7 @@ RSpec.describe Radio5::Client::Countries do
               expect(country).to be_country_iso_code
 
               expect(moods).to_not be_empty
-              expect(moods).to all satisfy { |mood| Radio5::MOODS.include?(mood) }
+              expect(moods).to all be_mood
             end
           end
         end
@@ -83,7 +75,7 @@ RSpec.describe Radio5::Client::Countries do
         subject { client.countries_for_decade(decade, group_by: :xyz) }
 
         it "raises an error" do
-          expect { subject }.to raise_error(ArgumentError, "unsupported `group_by` value: `:xyz`")
+          expect { subject }.to raise_error(ArgumentError, "invalid `group_by` value: :xyz")
         end
       end
     end
@@ -103,7 +95,7 @@ RSpec.describe Radio5::Client::Countries do
         stub_request(:get, /\/country\/mood/)
           .to_return(body: {"SLOW" => ["GBR", "FRA"], "XYZ" => ["GBR", "FRA"]}.to_json)
 
-        expect { subject }.to raise_error(ArgumentError, "unknown mood `XYZ`")
+        expect { subject }.to raise_error(ArgumentError, "invalid mood: :xyz")
       end
     end
   end

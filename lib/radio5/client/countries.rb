@@ -5,7 +5,7 @@ module Radio5
     module Countries
       def countries
         response = api.get("/language/countries/en.json")
-        json = JSON.parse(response.body)
+        json = parse_json(response.body)
 
         json.each_with_object({}) do |(iso_code, name, exist, rank), countries|
           countries[iso_code] = {
@@ -17,26 +17,22 @@ module Radio5
       end
 
       def countries_for_decade(decade, group_by: :mood)
-        unless decade.is_a?(Integer)
-          raise ArgumentError, "decade `#{decade.inspect}` should be an Integer"
-        end
-
-        unless DECADES.include?(decade)
-          raise ArgumentError, "decade `#{decade.inspect}` should be in the range from #{DECADES.first} to #{DECADES.last}"
-        end
+        validate_decade!(decade)
 
         # optimization to avoid doing this inside `case` to save HTTP request
         unless [:mood, :country].include?(group_by)
-          raise ArgumentError, "unsupported `group_by` value: `#{group_by.inspect}`"
+          raise ArgumentError, "invalid `group_by` value: #{group_by.inspect}"
         end
 
         response = api.get("/country/mood", query_params: {decade: decade})
-        json = JSON.parse(response.body)
+        json = parse_json(response.body)
 
-        grouped_by_mood = json.transform_keys do |mood_string|
-          MOODS_MAPPING.fetch(mood_string) do
-            raise ArgumentError, "unknown mood `#{mood_string}`"
-          end
+        grouped_by_mood = json.transform_keys do |mood_upcased|
+          mood = mood_upcased.downcase
+
+          validate_mood!(mood)
+
+          mood
         end
 
         case group_by
