@@ -22,7 +22,7 @@ module Radio5
     ISLAND_ICON_URL   = ASSET_URL.call("/island/icon", ["png", "svg"])
     ISLAND_SPLASH_URL = ASSET_URL.call("/island/splash", ["png", "svg"])
     ISLAND_MARKER_URL = ASSET_URL.call("/island/marker", ["png", "svg"])
-    TRACK_COVER_URL   = ASSET_URL.call(/\/cover\/#{COUNTRY_ISO_CODE_GENERIC}\/\d{4}/, ["jpg", "jpeg"])
+    TRACK_COVER_URL   = ASSET_URL.call(/\/cover\/#{COUNTRY_ISO_CODE_GENERIC}\/\d{4}\/large/, ["jpg", "jpeg"])
 
     AUDIO_URL = lambda do |exts|
       exts = /(#{exts.join("|")})/

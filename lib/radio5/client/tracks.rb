@@ -103,7 +103,7 @@ module Radio5
             songwriter:  normalize_string(json[:songwriter]),
             length:      json.fetch(:length),
             info:        normalize_string(json[:info]),
-            cover_url:   parse_asset_url(json, :image),
+            cover_url:   parse_asset_url(json, :image, size: "large"),
             audio:       audio,
             decade:      json.fetch(:decade),
             mood:        symbolize_mood(json.fetch(:mood)),

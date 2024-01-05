@@ -13,9 +13,15 @@ module Radio5
       JSON.parse(json_raw, symbolize_names: true)
     end
 
-    def parse_asset_url(hash, key)
+    def parse_asset_url(hash, key, size: nil)
       node = hash[key]
-      node && create_asset_url(*node.fetch_values(:path, :filename))
+
+      if node
+        path, filename = node.fetch_values(:path, :filename)
+        path << "#{size}/" if size
+
+        create_asset_url(path, filename)
+      end
     end
 
     def create_asset_url(path, filename)
