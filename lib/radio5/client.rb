@@ -1,33 +1,28 @@
 # frozen_string_literal: true
 
-require "json"
-
 module Radio5
   class Client
+    include Utils
+    include Validator
     include Users
     include Countries
     include Islands
-    include Utils
+    include Tracks
 
-    attr_reader :session_id, :api
+    class ApiError < StandardError; end
 
-    # def initialize(
-    #   session_id: nil,
-    #   username: nil,
-    #   password: nil,
-    #   open_timeout: nil,
-    #   read_timeout: nil,
-    #   write_timeout: nil,
-    #   proxy_url: nil,
-    #   debug_output: nil
-    # )
+    attr_accessor :open_timeout, :read_timeout, :write_timeout, :proxy_url, :debug_output
 
-    def initialize(session_id: nil, username: nil, password: nil, open_timeout: nil, read_timeout: nil, write_timeout: nil, proxy_url: nil, debug_output: nil)
-      @session_id = session_id
-      @username = username
-      @password = password
+    def initialize(open_timeout: nil, read_timeout: nil, write_timeout: nil, proxy_url: nil, debug_output: nil)
+      @open_timeout = open_timeout
+      @read_timeout = read_timeout
+      @write_timeout = write_timeout
+      @proxy_url = proxy_url
+      @debug_output = debug_output
+    end
 
-      @api = Http.new(
+    def api
+      Http.new(
         host: "radiooooo.com",
         port: 443,
         open_timeout: open_timeout,
@@ -36,42 +31,6 @@ module Radio5
         proxy_url: proxy_url,
         debug_output: debug_output
       )
-    end
-
-    # if session_id passed
-    #   - check me
-    #      if ok - nothing
-    #      if fail - expired, check if username / password present, try to login
-
-    def login(username: nil, password: nil)
-      # raise if no credentials provided
-
-      # session_id first
-      # username/pass second
-
-      new_session_id = "" # from response
-      @session_id = new_session_id
-
-      # should return user info
-    end
-
-    def session_header
-      if session_id.nil? || session_id.empty?
-        # ...
-      end
-
-      {
-        sid: session_id
-      }
-    end
-
-    def me
-      # info about user itself
-      # auth required
-    end
-
-    def authed?
-      # if account_info request returns actual info JSON
     end
   end
 end
