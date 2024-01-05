@@ -2,6 +2,8 @@
 
 require "bundler/setup"
 require "radio5"
-
 require "pry"
-Pry.start
+
+c = Radio5::Client.new
+
+binding.pry
