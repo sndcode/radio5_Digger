@@ -31,25 +31,6 @@ RSpec.describe Radio5::Client::Tracks do
         end
       end
     end
-
-    context "when unknown API error returned" do
-      before do
-        WebMock.disable_net_connect!(allow: /\/track\/play$/)
-      end
-
-      after do
-        WebMock.disable_net_connect!
-      end
-
-      let(:track_id) { "5d330a4506fb03d8872a333d" }
-
-      it "raises an error" do
-        stub_request(:get, /\/track\/play\/#{track_id}$/)
-          .to_return(body: {"error" => "Some API error"}.to_json)
-
-        expect { subject }.to raise_error(Radio5::Client::ApiError, "Some API error")
-      end
-    end
   end
 
   describe "#random_track" do
@@ -84,23 +65,6 @@ RSpec.describe Radio5::Client::Tracks do
         end
       end
     end
-
-    context "when unknown API error returned" do
-      before do
-        WebMock.disable_net_connect!(allow: /\/play$/)
-      end
-
-      after do
-        WebMock.disable_net_connect!
-      end
-
-      it "raises an error" do
-        stub_request(:post, /\/play$/)
-          .to_return(body: {"error" => "Some API error"}.to_json)
-
-        expect { subject }.to raise_error(Radio5::Client::ApiError, "Some API error")
-      end
-    end
   end
 
   describe "#island_track" do
@@ -131,23 +95,6 @@ RSpec.describe Radio5::Client::Tracks do
         vcr("client/island_track/not_found") do
           expect(subject).to be_nil
         end
-      end
-    end
-
-    context "when unknown API error returned" do
-      before do
-        WebMock.disable_net_connect!(allow: /\/play$/)
-      end
-
-      after do
-        WebMock.disable_net_connect!
-      end
-
-      it "raises an error" do
-        stub_request(:post, /\/play$/)
-          .to_return(body: {"error" => "Some API error"}.to_json)
-
-        expect { subject }.to raise_error(Radio5::Client::ApiError, "Some API error")
       end
     end
   end

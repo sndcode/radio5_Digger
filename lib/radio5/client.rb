@@ -9,8 +9,6 @@ module Radio5
     include Islands
     include Tracks
 
-    class ApiError < StandardError; end
-
     attr_accessor :open_timeout, :read_timeout, :write_timeout, :proxy_url, :debug_output
 
     def initialize(open_timeout: nil, read_timeout: nil, write_timeout: nil, proxy_url: nil, debug_output: nil)
@@ -22,15 +20,7 @@ module Radio5
     end
 
     def api
-      Http.new(
-        host: "radiooooo.com",
-        port: 443,
-        open_timeout: open_timeout,
-        read_timeout: read_timeout,
-        write_timeout: write_timeout,
-        proxy_url: proxy_url,
-        debug_output: debug_output
-      )
+      @api ||= Api.new(client: self)
     end
   end
 end

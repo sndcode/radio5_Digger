@@ -6,10 +6,6 @@ require "uri"
 
 module Radio5
   class Http
-    class NotOkResponseError < StandardError; end
-
-    DEFAULT_HOST = "radiooooo.com"
-    DEFAULT_PORT = 443
     DEFAULT_OPEN_TIMEOUT = 10 # seconds
     DEFAULT_READ_TIMEOUT = 10 # seconds
     DEFAULT_WRITE_TIMEOUT = 10 # seconds
@@ -33,8 +29,8 @@ module Radio5
 
     # rubocop:disable Layout/ExtraSpacing
     def initialize(
-      host: DEFAULT_HOST,
-      port: DEFAULT_PORT,
+      host:,
+      port:,
       open_timeout: DEFAULT_OPEN_TIMEOUT,
       read_timeout: DEFAULT_READ_TIMEOUT,
       write_timeout: DEFAULT_WRITE_TIMEOUT,
@@ -66,12 +62,9 @@ module Radio5
     end
     # rubocop:enable Layout/ExtraSpacing
 
-    def get(path, query_params: {}, headers: {})
-      request(Net::HTTP::Get, path, query_params, nil, headers)
-    end
-
-    def post(path, query_params: {}, body: nil, headers: {})
-      request(Net::HTTP::Post, path, query_params, body, headers)
+    def request(http_method_class, path, query_params, body, headers)
+      request = build_request(http_method_class, path, query_params, body, headers)
+      make_request(request)
     end
 
     private
@@ -86,11 +79,6 @@ module Radio5
       end
 
       proxy_uri
-    end
-
-    def request(http_method_class, path, query_params, body, headers)
-      request = build_request(http_method_class, path, query_params, body, headers)
-      make_request(request)
     end
 
     def build_request(http_method_class, path, query_params, body, headers)
@@ -123,13 +111,7 @@ module Radio5
     end
 
     def make_request(request, retries: 0)
-      response = @http.request(request)
-
-      if response.code != "200"
-        raise NotOkResponseError, "code: #{response.code}, body: #{response.body}"
-      end
-
-      response
+      @http.request(request)
     rescue *RETRIABLE_ERRORS => error
       if retries < max_retries
         make_request(request, retries: retries + 1)

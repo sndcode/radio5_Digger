@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "radio5/version"
-require_relative "radio5/http"
 require_relative "radio5/utils"
+require_relative "radio5/http"
+require_relative "radio5/api"
 require_relative "radio5/regexps"
 require_relative "radio5/validator"
 require_relative "radio5/client/users"

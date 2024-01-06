@@ -4,8 +4,7 @@ module Radio5
   class Client
     module Countries
       def countries
-        response = api.get("/language/countries/en.json")
-        json = parse_json(response.body)
+        _, json = api.get("/language/countries/en.json")
 
         json.each_with_object({}) do |(iso_code, name, exist, rank), countries|
           countries[iso_code] = {
@@ -24,8 +23,7 @@ module Radio5
           raise ArgumentError, "invalid `group_by` value: #{group_by.inspect}"
         end
 
-        response = api.get("/country/mood", query_params: {decade: decade})
-        json = parse_json(response.body)
+        _, json = api.get("/country/mood", query_params: {decade: decade})
 
         grouped_by_mood = json.transform_keys do |mood_upcased|
           mood = mood_upcased.downcase

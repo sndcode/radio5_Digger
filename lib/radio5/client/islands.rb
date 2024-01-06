@@ -7,8 +7,7 @@ module Radio5
 
       # rubocop:disable Layout/HashAlignment
       def islands
-        response = api.get("/island/all")
-        json = parse_json(response.body)
+        _, json = api.get("/island/all")
 
         json.map do |island|
           rank_value = island[:sort]

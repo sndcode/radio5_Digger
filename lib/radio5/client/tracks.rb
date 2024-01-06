@@ -6,17 +6,11 @@ module Radio5
       def track(track_id)
         validate_track_id!(track_id)
 
-        response = api.get("/track/play/#{track_id}")
-        json = parse_json(response.body)
+        _, json = api.get("/track/play/#{track_id}")
 
-        case json
-        in error: "No track with this id"
-          return nil
-        in error: api_error
-          raise ApiError, api_error
-        else
-          Parser.track_info(json)
-        end
+        Parser.track_info(json)
+      rescue Api::TrackNotFound
+        nil
       end
 
       # TODO: technically, API accepts an array of countries, but without premium
@@ -39,17 +33,11 @@ module Radio5
           moods:    stringify_moods(moods).uniq
         }.to_json
 
-        response = api.post("/play", body: body)
-        json = parse_json(response.body)
+        _, json = api.post("/play", body: body)
 
-        case json
-        in error: "No track for this selection"
-          return nil
-        in error: api_error
-          raise ApiError, api_error
-        else
-          Parser.track_info(json)
-        end
+        Parser.track_info(json)
+      rescue Api::MatchingTrackNotFound
+        nil
       end
       # rubocop:enable Layout/HashAlignment
 
@@ -64,17 +52,11 @@ module Radio5
           moods:  stringify_moods(moods).uniq
         }.to_json
 
-        response = api.post("/play", body: body)
-        json = parse_json(response.body)
+        _, json = api.post("/play", body: body)
 
-        case json
-        in error: "No track for this selection"
-          return nil
-        in error: api_error
-          raise ApiError, api_error
-        else
-          Parser.track_info(json)
-        end
+        Parser.track_info(json)
+      rescue Api::MatchingTrackNotFound
+        nil
       end
       # rubocop:enable Layout/HashAlignment
 
