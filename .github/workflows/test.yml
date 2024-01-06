@@ -30,7 +30,7 @@ jobs:
         bundle exec rspec
     - name: Upload coverages to Coveralls
       run: |
-        ./coveralls report -p --job-flag=ruby-${{ matrix.ruby }}
+        ./coveralls -p --job-flag=ruby-${{ matrix.ruby }}
 
   coverage:
     needs: rspec
@@ -43,4 +43,4 @@ jobs:
         curl -L https://github.com/coverallsapp/coverage-reporter/releases/latest/download/coveralls-linux.tar.gz | tar zxv
     - name: Finish Coveralls build
       run: |
-        ./coveralls done
+        ./coveralls -d
