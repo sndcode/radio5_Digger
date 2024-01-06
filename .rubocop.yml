@@ -19,3 +19,6 @@ AllCops:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
