@@ -44,11 +44,11 @@ module Radio5
     end
 
     def stringify_moods(moods)
-      moods.map { |mood| MOODS_TO_STR.fetch(mood) }
+      moods.map { |mood| MOODS_MAPPING.fetch(mood) }
     end
 
     def symbolize_mood(mood)
-      MOODS_TO_SYM.fetch(mood)
+      MOODS_MAPPING.key(mood)
     end
   end
 end

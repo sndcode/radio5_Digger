@@ -15,7 +15,7 @@ module Radio5
         end
       end
 
-      def countries_for_decade(decade, group_by: :mood)
+      def countries_for_decade(decade, group_by: :country)
         validate_decade!(decade)
 
         # optimization to avoid doing this inside `case` to save HTTP request

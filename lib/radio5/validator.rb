@@ -17,7 +17,7 @@ module Radio5
     end
 
     def mood?(object)
-      object.is_a?(Symbol) && MOODS.include?(object)
+      object.is_a?(Symbol) && MOODS_MAPPING.key?(object)
     end
 
     def validate_track_id!(object)

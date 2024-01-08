@@ -13,9 +13,13 @@ require_relative "radio5/client/tracks"
 require_relative "radio5/client"
 
 module Radio5
-  DECADES = (1900..2020).step(10).to_a
+  DECADES = (1900..2020).step(10).to_a.freeze
 
-  MOODS_TO_STR = {fast: "FAST", slow: "SLOW", weird: "WEIRD"}
-  MOODS_TO_SYM = MOODS_TO_STR.invert
-  MOODS = MOODS_TO_STR.keys
+  MOODS_MAPPING = {
+    fast: "FAST",
+    slow: "SLOW",
+    weird: "WEIRD"
+  }.freeze
+
+  MOODS = MOODS_MAPPING.keys.freeze
 end
