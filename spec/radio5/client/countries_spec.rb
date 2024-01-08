@@ -39,23 +39,8 @@ RSpec.describe Radio5::Client::Countries do
     context "with supported decade" do
       let(:decade) { 1970 }
 
-      context "when grouped by mood" do
-        it "returns mood-to-countries hash" do
-          vcr("client/countries_for_decade/#{decade}") do
-            expect(subject).to_not be_empty
-
-            subject.each do |mood, countries|
-              expect(mood).to be_mood
-
-              expect(countries).to_not be_empty
-              expect(countries).to all be_country_iso_code
-            end
-          end
-        end
-      end
-
       context "when grouped by country" do
-        subject { client.countries_for_decade(decade, group_by: :country) }
+        subject { client.countries_for_decade(decade) }
 
         it "returns country-to-moods hash" do
           vcr("client/countries_for_decade/#{decade}") do
@@ -66,6 +51,23 @@ RSpec.describe Radio5::Client::Countries do
 
               expect(moods).to_not be_empty
               expect(moods).to all be_mood
+            end
+          end
+        end
+      end
+
+      context "when grouped by mood" do
+        subject { client.countries_for_decade(decade, group_by: :mood) }
+
+        it "returns mood-to-countries hash" do
+          vcr("client/countries_for_decade/#{decade}") do
+            expect(subject).to_not be_empty
+
+            subject.each do |mood, countries|
+              expect(mood).to be_mood
+
+              expect(countries).to_not be_empty
+              expect(countries).to all be_country_iso_code
             end
           end
         end

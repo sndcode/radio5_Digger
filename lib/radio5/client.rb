@@ -22,5 +22,13 @@ module Radio5
     def api
       @api ||= Api.new(client: self)
     end
+
+    def decades
+      DECADES
+    end
+
+    def moods
+      MOODS
+    end
   end
 end
