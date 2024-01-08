@@ -3,7 +3,7 @@
 [![Build](https://github.com/ocvit/radio5/workflows/Build/badge.svg)](https://github.com/ocvit/radio5/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ocvit/radio5/badge.svg?branch=main)](https://coveralls.io/github/ocvit/radio5?branch=main)
 
-Adapter for [Radiooooo](https://radiooooo.app/) private API.
+Adapter for [Radiooooo](https://radiooooo.com/) private API.
 
 For music exploration purposes only 🧐
 
