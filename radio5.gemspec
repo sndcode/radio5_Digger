@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Dmytro Horoshko"]
   spec.email = ["electric.molfar@gmail.com"]
 
-  spec.summary = "Radiooooo.com unlocked!"
-  spec.description = "Adapter for Radiooooo.com private API."
+  spec.summary = "Adapter for Radiooooo private API"
+  spec.description = "Adapter for Radiooooo private API."
   spec.homepage = "https://github.com/ocvit/radio5"
   spec.license = "MIT"
   spec.metadata = {

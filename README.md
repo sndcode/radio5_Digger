@@ -42,6 +42,7 @@ client = Radio5::Client.new(
   read_timeout: 30, # default: 10
   write_timeout: 30, # default: 10
   proxy_url: "http://user:pass@123.4.56.178:80", # default: nil
+  max_retries: 5, # for network errors, default: 3
   debug_output: $stdout # default: nil
 )
 ```
@@ -223,7 +224,7 @@ There is just a couple of features that require login and/or premium account:
 
 - history of "listened" tracks - track becomes "listened" when you got it via `#random_track` or `#island_track` (free)
 - `followed` flag for `#user` - indicates whether or not you follow this user (free)
-- `#user_liked_tracks` - list of tracks which user really rock'n'roll'ed to (free)
+- `#user_liked_tracks` - list of tracks which user really vibed to (free)
 - ability to use multiple countries as a filter in `#random_track` (premium)
 
 Currently auth is in a WIP state.
