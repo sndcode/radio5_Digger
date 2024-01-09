@@ -4,17 +4,22 @@ require "net/http"
 require "openssl"
 require "uri"
 
+require "pry"
+
 module Radio5
   class Http
     DEFAULT_OPEN_TIMEOUT = 10 # seconds
     DEFAULT_READ_TIMEOUT = 10 # seconds
     DEFAULT_WRITE_TIMEOUT = 10 # seconds
-    DEFAULT_DEBUG_OUTPUT = nil
+    DEFAULT_PROXY_URL = nil
     DEFAULT_MAX_RETRIES = 3
+    DEFAULT_DEBUG_OUTPUT = nil
+
     DEFAULT_HEADERS = {
       "Content-Type" => "application/json; charset=utf-8",
       "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }.freeze
+
     RETRIABLE_ERRORS = [
       Errno::ECONNREFUSED,
       Errno::ECONNRESET,
@@ -25,40 +30,44 @@ module Radio5
       OpenSSL::SSL::SSLError
     ].freeze
 
+    attr_reader :host, :port, :open_timeout, :read_timeout, :write_timeout, :proxy_url, :max_retries, :debug_output, :http_client
+
     # rubocop:disable Layout/ExtraSpacing
     def initialize(
       host:,
       port:,
-      open_timeout: DEFAULT_OPEN_TIMEOUT,
-      read_timeout: DEFAULT_READ_TIMEOUT,
-      write_timeout: DEFAULT_WRITE_TIMEOUT,
+      open_timeout: nil,
+      read_timeout: nil,
+      write_timeout: nil,
       proxy_url: nil,
-      max_retries: DEFAULT_MAX_RETRIES,
-      debug_output: DEFAULT_DEBUG_OUTPUT
+      max_retries: nil,
+      debug_output: nil
     )
-      # @host          = host
-      # @port          = port
-      # @open_timeout  = open_timeout
-      # @read_timeout  = read_timeout
-      # @write_timeout = write_timeout
-      # @proxy_url     = proxy_url
-      # @debug_output  = debug_output
+      @host          = host
+      @port          = port
+      @open_timeout  = open_timeout  || DEFAULT_OPEN_TIMEOUT
+      @read_timeout  = read_timeout  || DEFAULT_READ_TIMEOUT
+      @write_timeout = write_timeout || DEFAULT_WRITE_TIMEOUT
+      @proxy_url     = proxy_url     || DEFAULT_PROXY_URL
+      @max_retries   = max_retries   || DEFAULT_MAX_RETRIES
+      @debug_output  = debug_output  || DEFAULT_DEBUG_OUTPUT
 
-      proxy_uri = parse_proxy_uri(proxy_url)
-      @max_retries = max_retries
+      @http_client = Net::HTTP.new(@host, @port, proxy_uri&.host, proxy_uri&.port, proxy_uri&.user, proxy_uri&.password)
 
-      @http = Net::HTTP.new(host, port, proxy_uri&.host, proxy_uri&.port, proxy_uri&.user, proxy_uri&.pass)
+      @http_client.tap do |c|
+        c.use_ssl       = @port == 443
+        c.open_timeout  = @open_timeout
+        c.read_timeout  = @read_timeout
+        c.write_timeout = @write_timeout
 
-      @http.tap do |c|
-        c.use_ssl       = port == 443
-        c.open_timeout  = open_timeout
-        c.read_timeout  = read_timeout
-        c.write_timeout = write_timeout
-
-        c.set_debug_output(debug_output)
+        c.set_debug_output(@debug_output)
       end
     end
     # rubocop:enable Layout/ExtraSpacing
+
+    def proxy_uri
+      @proxy_uri ||= parse_proxy_uri
+    end
 
     def request(http_method_class, path, query_params, body, headers)
       request = build_request(http_method_class, path, query_params, body, headers)
@@ -67,16 +76,15 @@ module Radio5
 
     private
 
-    def parse_proxy_uri(proxy_url)
+    def parse_proxy_uri
       return if proxy_url.nil?
 
-      proxy_uri = URI(proxy_url)
-
-      unless @proxy_uri.is_a?(URI::HTTP)
-        raise ArgumentError, "Invalid proxy URL: #{@proxy_uri}"
+      case uri = URI(proxy_url)
+      when URI::HTTP
+        uri
+      else
+        raise ArgumentError, "Invalid proxy URL: #{proxy_url.inspect}, parsed URI: #{uri.inspect}"
       end
-
-      proxy_uri
     end
 
     def build_request(http_method_class, path, query_params, body, headers)
@@ -109,9 +117,9 @@ module Radio5
     end
 
     def make_request(request, retries: 0)
-      @http.request(request)
+      http_client.request(request)
     rescue *RETRIABLE_ERRORS => error
-      if retries < @max_retries
+      if retries < max_retries
         make_request(request, retries: retries + 1)
       else
         raise error
