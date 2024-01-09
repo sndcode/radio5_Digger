@@ -4,8 +4,6 @@ require "net/http"
 require "openssl"
 require "uri"
 
-require "pry"
-
 module Radio5
   class Http
     DEFAULT_OPEN_TIMEOUT = 10 # seconds
