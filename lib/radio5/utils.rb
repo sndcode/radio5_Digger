@@ -7,7 +7,7 @@ module Radio5
   module Utils
     module_function
 
-    ASSET_HOST = "https://asset.radiooooo.com"
+    ASSET_HOST = "https://asset.radiooooo.com".freeze
 
     def parse_json(json_raw)
       JSON.parse(json_raw, symbolize_names: true)
