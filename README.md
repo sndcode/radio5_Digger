@@ -242,11 +242,11 @@ Currently auth is in a WIP state.
 ## Development
 
 ```sh
-bin/setup     // install deps
-bin/console   // interactive prompt to play around
-rake spec     // test!
-rake rubocop  // lint!
-sudo rm -rf / // relax, just kidding ^^
+bin/setup      // install deps
+bin/console    // interactive prompt to play around
+rake spec      // test!
+rake rubocop   // lint!
+sudo rm -rf /  // just kidding ^^
 ```
 
 ## Contributing
