@@ -6,11 +6,11 @@ require "uri"
 
 module Radio5
   class Http
-    DEFAULT_OPEN_TIMEOUT = 10.freeze # seconds
-    DEFAULT_READ_TIMEOUT = 10.freeze # seconds
-    DEFAULT_WRITE_TIMEOUT = 10.freeze # seconds
-    DEFAULT_DEBUG_OUTPUT = nil.freeze
-    DEFAULT_MAX_RETRIES = 3.freeze
+    DEFAULT_OPEN_TIMEOUT = 10 # seconds
+    DEFAULT_READ_TIMEOUT = 10 # seconds
+    DEFAULT_WRITE_TIMEOUT = 10 # seconds
+    DEFAULT_DEBUG_OUTPUT = nil
+    DEFAULT_MAX_RETRIES = 3
     DEFAULT_HEADERS = {
       "Content-Type" => "application/json; charset=utf-8",
       "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

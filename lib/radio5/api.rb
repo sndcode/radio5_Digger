@@ -7,8 +7,8 @@ module Radio5
     class MatchingTrackNotFound < Error; end
     class UnexpectedResponse < StandardError; end
 
-    HOST = "radiooooo.com".freeze
-    PORT = 443.freeze
+    HOST = "radiooooo.com"
+    PORT = 443
 
     attr_reader :client
 
