@@ -8,6 +8,7 @@ on:
 
 jobs:
   rubocop:
+    name: "rubocop:md"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
