@@ -1,7 +1,7 @@
 # Radio5
 
 [![Gem Version](https://badge.fury.io/rb/radio5.svg)](https://badge.fury.io/rb/radio5)
-[![Build](https://github.com/ocvit/radio5/workflows/Build/badge.svg)](https://github.com/ocvit/radio5/actions)
+[![Test](https://github.com/ocvit/radio5/workflows/Test/badge.svg)](https://github.com/ocvit/radio5/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ocvit/radio5/badge.svg?branch=main)](https://coveralls.io/github/ocvit/radio5?branch=main)
 
 Adapter for [Radiooooo](https://radiooooo.com/) private API.

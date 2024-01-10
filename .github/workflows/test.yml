@@ -1,8 +1,9 @@
-name: Build
+name: Test
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -27,7 +28,7 @@ jobs:
         curl -L https://github.com/coverallsapp/coverage-reporter/releases/latest/download/coveralls-linux.tar.gz | tar zxv
     - name: Run RSpec
       run: |
-        bundle exec rspec
+        bundle exec rake spec
     - name: Upload coverages to Coveralls
       run: |
         ./coveralls -p --job-flag=ruby-${{ matrix.ruby }}
