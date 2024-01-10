@@ -16,4 +16,5 @@ jobs:
         ruby-version: 3.2
     - name: Lint docs with RuboCop
       run: |
+        bundle install --jobs 4 --retry 3
         bundle exec rubocop:md
