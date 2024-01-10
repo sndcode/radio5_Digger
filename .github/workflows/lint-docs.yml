@@ -17,4 +17,4 @@ jobs:
     - name: Lint docs with RuboCop
       run: |
         bundle install --jobs 4 --retry 3
-        bundle exec rubocop:md
+        bundle exec rake rubocop:md
