@@ -4,19 +4,14 @@ require "spec_helper"
 
 RSpec.describe Radio5::Utils do
   describe "#parse_asset_url" do
-    let(:key) { :icon }
-
-    subject { described_class.parse_asset_url(hash, key) }
+    subject { described_class.parse_asset_url(node) }
 
     context "when asset node exists" do
       context "when asset fields are present" do
-        let(:hash) {
+        let(:node) {
           {
-            icon: {
-              path: "island/icon/",
-              filename: "6a28dc59-0699-452c-a7ae-93f59ce32cf7.png"
-            },
-            other_field: 123
+            path: "island/icon/",
+            filename: "6a28dc59-0699-452c-a7ae-93f59ce32cf7.png"
           }
         }
 
@@ -26,13 +21,10 @@ RSpec.describe Radio5::Utils do
       end
 
       context "when some of the asset fields are missing" do
-        let(:hash) {
+        let(:node) {
           {
-            icon: {
-              path: "island/icon/",
-              filepath: "6a28dc59-0699-452c-a7ae-93f59ce32cf7.png"
-            },
-            other_field: 123
+            path: "island/icon/",
+            filepath: "6a28dc59-0699-452c-a7ae-93f59ce32cf7.png"
           }
         }
 
@@ -43,11 +35,7 @@ RSpec.describe Radio5::Utils do
     end
 
     context "when asset node does not exist" do
-      let(:hash) {
-        {
-          other_field: 123
-        }
-      }
+      let(:node) { nil }
 
       it "returns nil" do
         expect(subject).to be_nil

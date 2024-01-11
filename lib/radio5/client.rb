@@ -22,8 +22,8 @@ module Radio5
       @open_timeout = open_timeout
       @read_timeout = read_timeout
       @write_timeout = write_timeout
-      @max_retries = max_retries
       @proxy_url = proxy_url
+      @max_retries = max_retries
       @debug_output = debug_output
     end
 

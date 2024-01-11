@@ -21,6 +21,7 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
 ])
 
 require "radio5"
+require "webmock/rspec"
 
 # require all spec `support` files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }

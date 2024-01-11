@@ -99,6 +99,8 @@ RSpec.describe Radio5::Client::Tracks do
     end
   end
 
+  # TODO: cover all possible variations with fields presence/values
+
   # rubocop:disable Layout/HashAlignment
   def expect_valid_track(track)
     expect(track).to include(
@@ -110,9 +112,16 @@ RSpec.describe Radio5::Client::Tracks do
       year:       be_filled_string.or(be_nil),
       label:      be_filled_string.or(be_nil),
       songwriter: be_filled_string.or(be_nil),
-      length:     be_a_kind_of(Integer),
+      length:     be_a(Integer),
       info:       be_filled_string.or(be_nil),
-      cover_url:  be_track_cover_url.or(be_nil),
+
+      cover_url: match(
+        thumb:  be_track_cover_url(:thumb),
+        small:  be_track_cover_url(:small),
+        medium: be_track_cover_url(:medium),
+        large:  be_track_cover_url(:large)
+      ).or(be_nil),
+
       audio: match(
         mpeg: match(
           url:        be_mpeg_url,
@@ -123,10 +132,11 @@ RSpec.describe Radio5::Client::Tracks do
           expires_at: be_utc_time
         )
       ),
+
       decade:     be_decade,
       mood:       be_mood,
       country:    be_country_iso_code,
-      like_count: be_a_kind_of(Integer),
+      like_count: be_a(Integer),
       created_at: be_utc_time.or(be_nil),
       created_by: be_mongo_id
     )

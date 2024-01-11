@@ -69,6 +69,9 @@ module Radio5
           created_at = created_node && parse_time_string(created_node.fetch(:date))
           created_by = created_node ? created_node.fetch(:user_id) : json.fetch(:profile_id)
 
+          cover_node = json[:image] || json[:cover]
+          cover_url = parse_image_urls(cover_node, entity: :track)
+
           audio = {
             mpeg: track_audio(json, :mpeg),
             ogg:  track_audio(json, :ogg)
@@ -85,7 +88,7 @@ module Radio5
             songwriter:  normalize_string(json[:songwriter]),
             length:      json.fetch(:length),
             info:        normalize_string(json[:info]),
-            cover_url:   parse_asset_url(json, :image, size: "large"),
+            cover_url:   cover_url,
             audio:       audio,
             decade:      json.fetch(:decade),
             mood:        symbolize_mood(json.fetch(:mood)),
@@ -110,7 +113,6 @@ module Radio5
           }
         end
       end
-      private_constant :Parser
     end
   end
 end
