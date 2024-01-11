@@ -89,8 +89,8 @@ client.random_track
 # }
 #
 # NOTES:
-# - `created_at` - always nil here (API limitations), available via `#track` if needed
-# - `created_by` - `id` of user who uploaded this track
+#   - `created_at` - always nil here (API limitations), available via `#track` if needed
+#   - `created_by` - `id` of user who uploaded this track
 ```
 
 To get random track using additional filters:
