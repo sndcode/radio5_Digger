@@ -151,7 +151,7 @@ client.decades
 client.moods
 # => [:fast, :slow, :weird]
 #
-# NOTE: all 3 moods are used in `#random_track` and `#island_track` by default 
+# NOTE: all 3 moods are used in `#random_track` and `#island_track` by default
 ```
 
 It's also possible to get all valid `country`/ `moods` combinations per for specific decade in advance:
@@ -262,7 +262,7 @@ client.user("5d3306de06fb03d8871fd138")
 #   - `rank` - is not unique
 #   - `birthday`:
 #      - `time` - original time from API, it is always around first day of Jan or last day of
-#                 December, with a strange hour offset around midnight, so it looks like the 
+#                 December, with a strange hour offset around midnight, so it looks like the
 #                 only real value here is the year
 #      - `year_normalized` - de-offset'ed year
 ```
@@ -273,7 +273,7 @@ To get user followers or followings counts:
 client.user_follow_counts("5d3306de06fb03d8871fd138")
 # => {
 #   followings: 17,
-#   followers: 866 
+#   followers: 866
 # }
 ```
 
