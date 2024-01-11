@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/contributor/uploaded/5d3306de06fb03d8871fd112?page=1&size=1000000000&status=onair
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 10 Jan 2024 16:17:18 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3A6f02e772-fccb-493b-9122-cafc0f7ddb77.gA06O42jdRfNlUAarDaoO6EposCHqZezCWNvkPo8xB0;
+        Path=/; Expires=Fri, 09 Feb 2024 16:17:18 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Wed, 10 Jan 2024 16:17:18 GMT
+recorded_with: VCR 6.2.0

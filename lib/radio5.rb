@@ -22,4 +22,18 @@ module Radio5
   }.freeze
 
   MOODS = MOODS_MAPPING.keys.freeze
+
+  USER_TRACK_STATUSES_MAPPING = {
+    posted: "posted",
+    rejected: "rejected",
+    on_air: "onair",
+    confirmation: "confirmation",
+    duplicate: "duplicate",
+    deleted: "deleted",
+    broken: "broken"
+  }.freeze
+
+  USER_TRACK_STATUSES = USER_TRACK_STATUSES_MAPPING.keys.freeze
+
+  MAX_PAGE_SIZE = 1_000_000_000
 end

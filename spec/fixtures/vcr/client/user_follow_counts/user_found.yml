@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/follow/count/5d3306de06fb03d8871fd138
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 10 Jan 2024 18:42:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '32'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"20-SlGv4hKRDC9cy9vW+8sdsW3qUfA"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3Aff1b9996-de2e-4d84-acfa-f86a6cf445d1.yviWUnfhLcheONL9XnfRAViMAriaRuNCqQV2aIpiD3k;
+        Path=/; Expires=Fri, 09 Feb 2024 18:42:47 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"following":17,"followers":866}'
+  recorded_at: Wed, 10 Jan 2024 18:42:46 GMT
+recorded_with: VCR 6.2.0
