@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/contributor/5d3306de06fb03d8871fd138
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 10 Jan 2024 13:33:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '339'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"153-8qBe0IUB3jKmRK+QFOEK0yzQTF0"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3Aa41763c5-043e-490b-870c-816f7f0dde0c.qBh6zlSMucscF3wcl7pGlV4RruquROwhaAdVxscRui8;
+        Path=/; Expires=Fri, 09 Feb 2024 13:33:28 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '{"_id":"5d3306de06fb03d8871fd138","info":"Dreamseeker","country":"FRA","birthday":"1981-01-31T23:01:01.000Z","uuid":"2d489ad3-d710-4104-9696-dbd67aaf1033","ranking":9186,"created":"2014-09-30T18:58:32.000Z","pseudonym":"Paul
+        Charmant-Kabil","image_v":3,"image":{"path":"user/1409/","filename":"2d489ad3-d710-4104-9696-dbd67aaf1033_3.jpg"}}'
+  recorded_at: Wed, 10 Jan 2024 13:33:28 GMT
+recorded_with: VCR 6.2.0

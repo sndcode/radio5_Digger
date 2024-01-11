@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://radiooooo.com/follow/list/follower/5d3306de06fb03d8871fd138?page=2&size=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Jan 2024 09:47:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '503'
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1f7-6zvQ+lUgoCufA9C1U2Z+0TC4uZ8"
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - connect.sid=s%3A6a75188d-8ec4-4c07-81cd-c62e81feaecd.c3EXcntiMRCcTUxKHJD9r1IqHP%2FwP1ycH2dwHNSY7XQ;
+        Path=/; Expires=Sat, 10 Feb 2024 09:47:12 GMT; HttpOnly
+    body:
+      encoding: UTF-8
+      string: '[{"_id":"6593fe9db712bd74a50cc648","pseudonym":"Harvey","created":"2024-01-02T12:16:29.105Z","ranking":5,"country":"TUR","image_v":2,"followed":0,"image":{"path":"user/2401/","filename":"049d65d0-239b-45ae-9191-afb5210ca76a_2.jpg"}},{"_id":"618cd8c455e83732e1cb4179","pseudonym":"Janeha","created":"2021-11-11T08:48:04.044Z","ranking":0,"country":"DEU","followed":0},{"_id":"5d330a1006fb03d887299e01","pseudonym":"Tygael","created":"2019-01-18T23:39:14.000Z","ranking":495,"country":"FRA","followed":0}]'
+  recorded_at: Thu, 11 Jan 2024 09:47:12 GMT
+recorded_with: VCR 6.2.0

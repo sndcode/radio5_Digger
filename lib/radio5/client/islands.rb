@@ -3,13 +3,19 @@
 module Radio5
   class Client
     module Islands
-      include Utils
-
-      # rubocop:disable Layout/HashAlignment
       def islands
         _, json = api.get("/island/all")
 
         json.map do |island|
+          Parser.island_info(island)
+        end
+      end
+
+      module Parser
+        extend Utils
+
+        # rubocop:disable Layout/HashAlignment
+        def self.island_info(island)
           rank_value = island[:sort]
           rank = rank_value if rank_value.is_a?(Integer)
 
@@ -30,9 +36,9 @@ module Radio5
             favourite_count: island[:favorites],
             play_count:      island.fetch(:plays),
             rank:            rank,
-            icon_url:        parse_asset_url(island, :icon),
-            splash_url:      parse_asset_url(island, :splash),
-            marker_url:      parse_asset_url(island, :marker),
+            icon_url:        parse_asset_url(island[:icon]),
+            splash_url:      parse_asset_url(island[:splash]),
+            marker_url:      parse_asset_url(island[:marker]),
             enabled:         island.fetch(:enabled),
             free:            island[:free],
             on_map:          island.fetch(:onmap),
@@ -44,8 +50,8 @@ module Radio5
             updated_by:      updated_by
           }
         end
+        # rubocop:enable Layout/HashAlignment
       end
-      # rubocop:enable Layout/HashAlignment
     end
   end
 end

@@ -9,17 +9,32 @@ module Radio5
 
     ASSET_HOST = "https://asset.radiooooo.com"
 
+    IMAGE_SIZES = {
+      track: %i[thumb small medium large],
+      user: %i[icon thumb small medium large]
+    }.freeze
+
     def parse_json(json_raw)
       JSON.parse(json_raw, symbolize_names: true)
     end
 
-    def parse_asset_url(hash, key, size: nil)
-      node = hash[key]
-
+    def parse_image_urls(node, entity:)
       if node
         path, filename = node.fetch_values(:path, :filename)
-        path << "#{size}/" if size
+        image_sizes = IMAGE_SIZES.fetch(entity)
 
+        image_sizes.each_with_object({}) do |image_size, hash|
+          image_size_path = "#{path}#{image_size}/"
+          image_url = create_asset_url(image_size_path, filename)
+
+          hash[image_size] = image_url
+        end
+      end
+    end
+
+    def parse_asset_url(node)
+      if node
+        path, filename = node.fetch_values(:path, :filename)
         create_asset_url(path, filename)
       end
     end
@@ -49,6 +64,14 @@ module Radio5
 
     def symbolize_mood(mood)
       MOODS_MAPPING.key(mood)
+    end
+
+    def stringify_user_track_status(status)
+      USER_TRACK_STATUSES_MAPPING.fetch(status)
+    end
+
+    def symbolize_user_track_status(status)
+      USER_TRACK_STATUSES_MAPPING.key(status)
     end
   end
 end

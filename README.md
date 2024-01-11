@@ -47,7 +47,7 @@ client = Radio5::Client.new(
 )
 ```
 
-## Usage
+## Tracks
 
 To get random track:
 
@@ -64,7 +64,12 @@ client.random_track
 #   songwriter: "Bart Howard",
 #   length: 133,
 #   info: "It is the original recording of Fly me to the moon !",
-#   cover_url: "https://asset.radiooooo.com/cover/USA/1950/large/<uuid>_1.jpg",
+#   cover_url: {
+#     thumb: "https://asset.radiooooo.com/cover/USA/1950/thumb/<uuid>_1.jpg",
+#     small: "https://asset.radiooooo.com/cover/USA/1950/small/<uuid>_1.jpg",
+#     medium: "https://asset.radiooooo.com/cover/USA/1950/medium/<uuid>_1.jpg",
+#     large: "https://asset.radiooooo.com/cover/USA/1950/large/<uuid>_1.jpg",
+#   },
 #   audio: {
 #     mpeg: {
 #       url: "https://radiooooo-track.b-cdn.net/USA/1950/<uuid>.mp3?token=<token>&expires=1704717060",
@@ -120,12 +125,12 @@ client.track("655f7bb24b0d722a021a2cf2")
 # output is exactly the same as from `#random_track`, but `created_at` is now filled
 ```
 
+## Countries / decades / moods
+
 OK, what input parameters are available?
 
 ```ruby
-# list of countries + additional info:
-#   - `exist` - "is it still around" flag
-#   - `rank`  - subjective ranking provided by the website, only 10 countries have it
+# countries
 client.countries
 # => {
 #   "AFG" => {name: "Afganistan", exist: true, rank: nil},
@@ -133,6 +138,10 @@ client.countries
 #   "FRA" => {name: "France", exist: true, rank: 2},
 #   ...
 # }
+#
+# NOTES:
+#   - `exist` - "is it still around" flag
+#   - `rank`  - subjective ranking provided by the website, only 10 countries have it
 
 # decades
 client.decades
@@ -142,10 +151,10 @@ client.decades
 client.moods
 # => [:fast, :slow, :weird]
 #
-# NOTE: by default all 3 moods are used in `#random_track` and `#island_track`
+# NOTE: all 3 moods are used in `#random_track` and `#island_track` by default
 ```
 
-It's also possible to get all valid `country`/`decade`/`moods` combinations in advance:
+It's also possible to get all valid `country`/ `moods` combinations per for specific decade in advance:
 
 ```ruby
 # grouped by country
@@ -168,10 +177,13 @@ client.countries_for_decade(1960, group_by: :mood)
 # }
 ```
 
-How to work with the "islands" ("playlists" in the simple words):
+## Islands
+
+Islands work as a kind of thematic collections.
+
+To get a list of all islands:
 
 ```ruby
-# list all islands
 client.islands
 # => [{
 #   id: "5d330a3e06fb03d8872a3316",
@@ -208,22 +220,119 @@ client.islands
 #   - `play_mode`  - it is somehow used in a web app
 #   - `created_by` - `id` of user who created this island
 #   - `updated_by` - ...and who updated it last time
+```
 
-# to get random track from selected island
+To get random track from selected island:
+
+```ruby
 client.island_track(island_id: "5d330a3e06fb03d8872a3316")
 
 # it's also possible to specify moods
 client.island_track(island_id: "5d330a3e06fb03d8872a3316", moods: [:fast, :weird])
 ```
 
-User endpoints - WIP.
+## Users
+
+To get information about specific user using its `id`:
+
+```ruby
+client.user("5d3306de06fb03d8871fd138")
+# => {
+#   id: "5d3306de06fb03d8871fd138",
+#   uuid: <uuid>,
+#   name: "Paul Charmant-Kabil",
+#   info: "Dreamseeker",
+#   country: "FRA",
+#   rank: 9188,
+#   image_url: {
+#     icon: "https://asset.radiooooo.com/user/1409/icon/<uuid>_3.jpg",
+#     thumb: "https://asset.radiooooo.com/user/1409/thumb/<uuid>_3.jpg",
+#     small: "https://asset.radiooooo.com/user/1409/small/<uuid>_3.jpg",
+#     medium: "https://asset.radiooooo.com/user/1409/medium/<uuid>_3.jpg",
+#     large: "https://asset.radiooooo.com/user/1409/large/<uuid>_3.jpg"
+#   },
+#   birthday: {
+#     time: 1981-01-31 23:01:01 UTC,
+#     year_normalized: 1981
+#   },
+#   created_at: 2014-09-30 18:58:32 UTC
+# }
+#
+# NOTES:
+#   - `rank` - is not unique
+#   - `birthday`:
+#      - `time` - original time from API, it is always around first day of Jan or last day of
+#                 December, with a strange hour offset around midnight, so it looks like the
+#                 only real value here is the year
+#      - `year_normalized` - de-offset'ed year
+```
+
+To get user followers or followings counts:
+
+```ruby
+client.user_follow_counts("5d3306de06fb03d8871fd138")
+# => {
+#   followings: 17,
+#   followers: 866
+# }
+```
+
+To get list of user followers:
+
+```ruby
+# all followers will be returned by default
+client.user_followers("5d3306de06fb03d8871fd138")
+# => [{
+#   id: "5f8f175051430765bd5c1b08",
+#   name: "Philart",
+#   country: "FRA",
+#   rank: 25,
+#   image_url: {
+#     icon: "https://asset.radiooooo.com/user/2010/icon/<uuid>_1.jpg",
+#     thumb: "https://asset.radiooooo.com/user/2010/thumb/<uuid>_1.jpg",
+#     small: "https://asset.radiooooo.com/user/2010/small/<uuid>_1.jpg",
+#     medium: "https://asset.radiooooo.com/user/2010/medium/<uuid>_1.jpg",
+#     large: "https://asset.radiooooo.com/user/2010/large/<uuid>_1.jpg"
+#   },
+#   created_at: 2020-10-20 16:58:56.819 UTC
+# }, ...]
+
+# it's also possible to specify size/page
+client.user_followers("5d3306de06fb03d8871fd138", size: 1, page: 5)
+# => [{...}]
+```
+
+To get list of user followings:
+
+```ruby
+# all followings will be returned by default
+client.user_followings("5d3306de06fb03d8871fd138")
+# => [{
+#   id: "640ab0cebf47667afdbf9edb",
+#   name: "Cap Jones",
+#   country: "USA",
+#   rank: 5,
+#   image_url: {
+#     icon: "https://asset.radiooooo.com/user/2303/icon/<uuid>_1.jpg",
+#     thumb: "https://asset.radiooooo.com/user/2303/thumb/<uuid>_1.jpg",
+#     small: "https://asset.radiooooo.com/user/2303/small/<uuid>_1.jpg",
+#     medium: "https://asset.radiooooo.com/user/2303/medium/<uuid>_1.jpg",
+#     large: "https://asset.radiooooo.com/user/2303/large/<uuid>_1.jpg"
+#   },
+#   created_at: 2023-03-10 04:23:42.87 UTC
+# }, ...]
+
+# it's also possible to specify size/page
+client.user_followings("5d3306de06fb03d8871fd138", size: 1, page: 5)
+# => [{...}]
+```
 
 ## Auth?
 
-There is just a couple of features that require login and/or premium account:
+There is just a couple of features that require login (free or premium account):
 
-- history of "listened" tracks - track becomes "listened" when you got it via `#random_track` or `#island_track` (free)
-- `followed` flag for `#user` - indicates whether or not you follow this user (free)
+- `#track_history` - list of tracks you "listened" via `#random_track` or `#island_track` (free)
+- `user[:followed]` flag - indicates whether or not you follow this user (free)
 - `#user_liked_tracks` - list of tracks which user really vibed to (free)
 - ability to use multiple countries as a filter in `#random_track` (premium)
 
@@ -236,7 +345,7 @@ Currently auth is in a WIP state.
 - [x] Countries support  
 - [x] Islands support  
 - [x] Tracks support  
-- [ ] Users support  
+- [x] Users support  
 - [ ] Auth + auth'ed endpoints  
 
 ## Development

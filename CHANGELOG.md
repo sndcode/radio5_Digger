@@ -1,3 +1,9 @@
+0.2.0
+----------
+
+- Added users endpoints support
+- Replaced `track[:cover]` with `track[:cover_url]` with extended format (per size) as with users
+
 0.1.2
 ----------
 

@@ -5,6 +5,7 @@ module Radio5
     class Error < StandardError; end
     class TrackNotFound < Error; end
     class MatchingTrackNotFound < Error; end
+    class UserNotFound < Error; end
     class UnexpectedResponse < StandardError; end
 
     HOST = "radiooooo.com"
@@ -39,6 +40,8 @@ module Radio5
           raise TrackNotFound
         in error: "No track for this selection"
           raise MatchingTrackNotFound
+        in error: "No info for this user"
+          raise UserNotFound
         in error: other_error
           raise Error, other_error
         else
