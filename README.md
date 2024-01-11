@@ -151,7 +151,7 @@ client.decades
 client.moods
 # => [:fast, :slow, :weird]
 #
-# NOTE: by default all 3 moods are used in `#random_track` and `#island_track`
+# NOTE: all 3 moods are used in `#random_track` and `#island_track` by default 
 ```
 
 It's also possible to get all valid `country`/ `moods` combinations per for specific decade in advance:
@@ -280,6 +280,7 @@ client.user_follow_counts("5d3306de06fb03d8871fd138")
 To get list of user followers:
 
 ```ruby
+# all followers will be returned by default
 client.user_followers("5d3306de06fb03d8871fd138")
 # => [{
 #   id: "5f8f175051430765bd5c1b08",
@@ -295,11 +296,16 @@ client.user_followers("5d3306de06fb03d8871fd138")
 #   },
 #   created_at: 2020-10-20 16:58:56.819 UTC
 # }, ...]
+
+# it's also possible to specify size/page
+client.user_followers("5d3306de06fb03d8871fd138", size: 1, page: 5)
+# => [{...}]
 ```
 
 To get list of user followings:
 
 ```ruby
+# all followings will be returned by default
 client.user_followings("5d3306de06fb03d8871fd138")
 # => [{
 #   id: "640ab0cebf47667afdbf9edb",
@@ -315,6 +321,10 @@ client.user_followings("5d3306de06fb03d8871fd138")
 #   },
 #   created_at: 2023-03-10 04:23:42.87 UTC
 # }, ...]
+
+# it's also possible to specify size/page
+client.user_followings("5d3306de06fb03d8871fd138", size: 1, page: 5)
+# => [{...}]
 ```
 
 ## Auth?
