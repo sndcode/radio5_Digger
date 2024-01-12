@@ -353,8 +353,8 @@ Currently auth is in a WIP state.
 ```sh
 bin/setup         // install deps
 bin/console       // interactive prompt to play around
-rake spec         // test!
-rake spec:no_vcr  // test with VCR cassettes disabled!
+rake spec         // run tests!
+rake spec:no_vcr  // run tests with VCR cassettes disabled!
 rake rubocop      // lint code!
 rake rubocop:md   // lint docs!
 sudo rm -rf /     // just kidding ^^
