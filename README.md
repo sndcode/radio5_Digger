@@ -261,9 +261,9 @@ client.user("5d3306de06fb03d8871fd138")
 # NOTES:
 #   - `rank` - is not unique
 #   - `birthday`:
-#      - `time` - original time from API, it is always around first day of January or last day of
-#                 December, with a strange hour offset around midnight, so it looks like the only
-#                 real value here is the year
+#      - `time` - original time from API, it is always around the first day of January or
+#                 the last day of December, with a strange hour offset around midnight, so
+#                 it looks like the only real value here is the year
 #      - `year_normalized` - de-offset'ed year
 ```
 
