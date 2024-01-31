@@ -351,13 +351,13 @@ Currently auth is in a WIP state.
 ## Development
 
 ```sh
-bin/setup         // install deps
-bin/console       // interactive prompt to play around
-rake spec         // run tests!
-rake spec:no_vcr  // run tests with VCR cassettes disabled!
-rake rubocop      // lint code!
-rake rubocop:md   // lint docs!
-sudo rm -rf /     // just kidding ^^
+bin/setup         # install deps
+bin/console       # interactive prompt to play around
+rake spec         # run tests!
+rake spec:no_vcr  # run tests with VCR cassettes disabled!
+rake rubocop      # lint code!
+rake rubocop:md   # lint docs!
+sudo rm -rf /     # just kidding ^^
 ```
 
 ## Contributing
