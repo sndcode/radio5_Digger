@@ -12,12 +12,12 @@ module Radio5
     attr_accessor :open_timeout, :read_timeout, :write_timeout, :proxy_url, :max_retries, :debug_output
 
     def initialize(
-      open_timeout: nil,
-      read_timeout: nil,
-      write_timeout: nil,
-      proxy_url: nil,
-      max_retries: nil,
-      debug_output: nil
+      open_timeout: Http::DEFAULT_OPEN_TIMEOUT,
+      read_timeout: Http::DEFAULT_READ_TIMEOUT,
+      write_timeout: Http::DEFAULT_WRITE_TIMEOUT,
+      proxy_url: Http::DEFAULT_PROXY_URL,
+      max_retries: Http::DEFAULT_MAX_RETRIES,
+      debug_output: Http::DEFAULT_DEBUG_OUTPUT
     )
       @open_timeout = open_timeout
       @read_timeout = read_timeout
