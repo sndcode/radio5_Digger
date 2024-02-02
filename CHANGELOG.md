@@ -1,3 +1,8 @@
+0.2.1
+----------
+
+- Fixed bug with non-readable client default opts
+
 0.2.0
 ----------
 
