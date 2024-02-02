@@ -62,7 +62,7 @@ class Loader
 
   def start
     loop do
-      break if track_count >= opts[:track_limit]
+      break if track_limit_reached?
 
       track = get_track
 
@@ -93,6 +93,12 @@ class Loader
       end
     end
   end
+
+  def track_limit_reached?
+    track_count >= opts[:track_limit]
+  end
+
+  private
 
   def search_params
     @search_params ||= {
