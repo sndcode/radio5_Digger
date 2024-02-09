@@ -257,7 +257,6 @@ RSpec.describe Radio5::Client::Users do
 
   # TODO: cover all possible variations with fields presence/values
 
-  # rubocop:disable Layout/HashAlignment
   def expect_valid_user(user)
     expect(user).to match(
       id:      be_mongo_id,
@@ -324,5 +323,4 @@ RSpec.describe Radio5::Client::Users do
       status:     be_user_track_status
     )
   end
-  # rubocop:enable Layout/HashAlignment
 end

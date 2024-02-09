@@ -73,7 +73,6 @@ module Radio5
         raise NotImplementedError, "depends on auth"
       end
 
-      # rubocop:disable Layout/HashAlignment
       module Parser
         extend Utils
 
@@ -141,7 +140,6 @@ module Radio5
           end
         end
       end
-      # rubocop:enable Layout/HashAlignment
     end
   end
 end

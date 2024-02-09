@@ -101,7 +101,6 @@ RSpec.describe Radio5::Client::Tracks do
 
   # TODO: cover all possible variations with fields presence/values
 
-  # rubocop:disable Layout/HashAlignment
   def expect_valid_track(track)
     expect(track).to include(
       id:         be_mongo_id,
@@ -141,5 +140,4 @@ RSpec.describe Radio5::Client::Tracks do
       created_by: be_mongo_id
     )
   end
-  # rubocop:enable Layout/HashAlignment
 end

@@ -14,7 +14,6 @@ module Radio5
       module Parser
         extend Utils
 
-        # rubocop:disable Layout/HashAlignment
         def self.island_info(island)
           rank_value = island[:sort]
           rank = rank_value if rank_value.is_a?(Integer)
@@ -50,7 +49,6 @@ module Radio5
             updated_by:      updated_by
           }
         end
-        # rubocop:enable Layout/HashAlignment
       end
     end
   end

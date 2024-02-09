@@ -19,8 +19,6 @@ module Radio5
       # account only the first one is used during filtering.
       #   `country` should be used for now
       #   `countries` might be added in a future after implementation of auth
-
-      # rubocop:disable Layout/HashAlignment
       def random_track(country: nil, decades: [], moods: MOODS)
         iso_codes = country ? [country] : []
 
@@ -41,9 +39,7 @@ module Radio5
       rescue Api::MatchingTrackNotFound
         nil
       end
-      # rubocop:enable Layout/HashAlignment
 
-      # rubocop:disable Layout/HashAlignment
       def island_track(island_id:, moods: MOODS)
         validate_island_id!(island_id)
         validate_moods!(moods)
@@ -60,12 +56,10 @@ module Radio5
       rescue Api::MatchingTrackNotFound
         nil
       end
-      # rubocop:enable Layout/HashAlignment
 
       module Parser
         extend Utils
 
-        # rubocop:disable Layout/HashAlignment
         def self.track_info(json)
           created_node = json[:created]
           created_at = created_node && parse_time_string(created_node.fetch(:date))
@@ -100,7 +94,6 @@ module Radio5
             created_by:  created_by
           }
         end
-        # rubocop:enable Layout/HashAlignment
 
         def self.track_audio(json, format)
           url = json.fetch(:links).fetch(format)

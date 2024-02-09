@@ -2,8 +2,6 @@
 
 module Radio5
   module Constants
-    # rubocop:disable Layout/HashAlignment
-
     DECADES = (1900..2020).step(10).to_a.freeze
 
     MOODS_MAPPING = {
@@ -34,7 +32,5 @@ module Radio5
     ASSET_HOST = "https://asset.radiooooo.com"
 
     MAX_PAGE_SIZE = 1_000_000_000
-
-    # rubocop:enable Layout/HashAlignment
   end
 end
