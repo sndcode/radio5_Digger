@@ -7,7 +7,8 @@ on:
   pull_request:
 
 jobs:
-  rspec:
+  spec:
+    name: spec
     runs-on: ubuntu-latest
     env:
       COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
@@ -33,8 +34,9 @@ jobs:
       run: |
         ./coveralls -p --job-flag=ruby-${{ matrix.ruby }}
 
-  rspec_no_vcr:
-    needs: rspec
+  spec_no_vcr:
+    name: "spec:no_vcr"
+    needs: spec
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -43,10 +45,11 @@ jobs:
         ruby-version: 3.3
     - name: Run RSpec without VCR cassettes
       run: |
+        bundle install --jobs 4 --retry 3
         bundle exec rake spec:no_vcr
 
   coverage:
-    needs: rspec
+    needs: spec_no_vcr
     runs-on: ubuntu-latest
     env:
       COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
