@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Radio5::Client::Tracks do
-  include ValidatorHelpers
+  include ValidationsHelper
 
   let(:client) { Radio5::Client.new }
 
@@ -40,7 +40,7 @@ RSpec.describe Radio5::Client::Tracks do
       it "returns track info" do
         expect_country_iso_codes_validation([])
         expect_decades_validation([])
-        expect_moods_validation(Radio5::MOODS)
+        expect_moods_validation(Radio5::Constants::MOODS)
 
         vcr("client/random_track/found") do
           expect_valid_track(subject)
@@ -75,7 +75,7 @@ RSpec.describe Radio5::Client::Tracks do
     context "when matching track found" do
       it "returns track info" do
         expect_island_id_validation(island_id)
-        expect_moods_validation(Radio5::MOODS)
+        expect_moods_validation(Radio5::Constants::MOODS)
 
         vcr("client/island_track/found") do
           expect_valid_track(subject)
