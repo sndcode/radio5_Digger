@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module ValidatorHelpers
+module ValidationsHelper
   module_function
 
   def expect_validation(method, *args)
-    expect_any_instance_of(Radio5::Validator)
+    expect_any_instance_of(Radio5::Validations)
       .to receive(method)
       .with(*args)
       .exactly(1)
