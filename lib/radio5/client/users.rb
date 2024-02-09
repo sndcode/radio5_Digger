@@ -3,6 +3,8 @@
 module Radio5
   class Client
     module Users
+      include Constants
+
       def user(id)
         validate_user_id!(id)
 
@@ -51,7 +53,7 @@ module Radio5
         _, json = api.get("/follow/list/follower/#{id}", query_params: {size: size, page: page})
 
         json.map do |user|
-          Parser.follow_user_info(user)
+          Parser.follower_user_info(user)
         end
       end
 
@@ -63,7 +65,7 @@ module Radio5
         _, json = api.get("/follow/list/following/#{id}", query_params: {size: size, page: page})
 
         json.map do |user|
-          Parser.follow_user_info(user)
+          Parser.following_user_info(user)
         end
       end
 
@@ -117,8 +119,7 @@ module Radio5
           }
         end
 
-        # TODO: strange name tbh, change later
-        def self.follow_user_info(user)
+        def self.follower_user_info(user)
           {
             id:         user.fetch(:_id),
             name:       normalize_string(user.fetch(:pseudonym)),
@@ -127,6 +128,9 @@ module Radio5
             image_url:  parse_image_urls(user[:image], entity: :user),
             created_at: parse_time_string(user.fetch(:created))
           }
+        end
+        class << self
+          alias_method :following_user_info, :follower_user_info
         end
 
         def self.normalize_year(time)
