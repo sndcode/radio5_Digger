@@ -3,16 +3,35 @@
 ##
 # Universal tracks loader
 #
-# Setup (additional gems):
+# Install additional gems:
 #   gem install slop
 #   gem install colorize
 #
-# Usage:
-#   load random tracks
-#     ruby loader.rb
+# Default paths:
+#   main folder:   "~/Downloads/radio5_music"
+#   tracks folder: "~/Downloads/radio5_music/tracks"
+#   catalog file:  "~/Downloads/radio5_music/catalog.txt"
 #
-#   load tracks using filters
-#     ruby loader.rb -c FRA -d 1960,1980,1990 -m weird,slow
+# Usage:
+#   load random tracks using default main folder
+#     > ruby loader.rb
+#
+#   to change main folder
+#     > ruby loader.rb -f ~/Music/radio5
+#
+#   load tracks using additional filters
+#     > ruby loader.rb -c FRA -d 1960,1980,1990 -m weird,slow
+#
+#   load specified number of tracks (default: 100)
+#     > ruby loader.rb -l 10
+#
+#   load audio files in OGG format (default: MPEG/MP3)
+#     > ruby loader.rb -a ogg
+#
+#   ignore tracks that appeared previously (default: true)
+#   unique track hashes are stored in `catalog.txt` in the main folder
+#   if you want to reset the catalog - just delete the file
+#     > ruby loader.rb -u true
 #
 # All usage opts:
 #   ruby loader.rb -h
@@ -226,7 +245,7 @@ if __FILE__ == $0
   opts = Slop.parse do |o|
     o.string  "-c", "--country", "country ISO code, e.g. FRA"
     o.array   "-d", "--decades", "decades, e.g. 1980,1990"
-    o.array   "-m", "--moods", "moods, e.g. weird,slow"
+    o.array   "-m", "--moods", "moods, e.g. weird,slow,fast"
     o.string  "-f", "--folder-path", "path to folder to store files, default: #{DEFAULT_OPTS[:folder_path]}", default: DEFAULT_OPTS[:folder_path]
     o.integer "-l", "--track-limit", "number of tracks to download, default: #{DEFAULT_OPTS[:track_limit]}", default: DEFAULT_OPTS[:track_limit]
     o.bool    "-u", "--unique-tracks", "skip tracks that were downloaded previously, default: #{DEFAULT_OPTS[:unique_tracks]}", default: DEFAULT_OPTS[:unique_tracks]
