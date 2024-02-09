@@ -327,6 +327,10 @@ client.user_followings("5d3306de06fb03d8871fd138", size: 1, page: 5)
 # => [{...}]
 ```
 
+## Examples
+
+You can check an example of track loader [here](https://github.com/ocvit/radio5/blob/main/examples/loader.rb).
+
 ## Auth?
 
 There is just a couple of features that require login (free or premium account):
