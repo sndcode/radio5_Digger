@@ -3,7 +3,7 @@
 module Radio5
   class Client
     include Utils
-    include Validator
+    include Validations
     include Users
     include Countries
     include Islands
@@ -32,11 +32,11 @@ module Radio5
     end
 
     def decades
-      DECADES
+      Constants::DECADES
     end
 
     def moods
-      MOODS
+      Constants::MOODS
     end
   end
 end

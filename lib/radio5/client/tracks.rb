@@ -3,6 +3,8 @@
 module Radio5
   class Client
     module Tracks
+      include Constants
+
       def track(track_id)
         validate_track_id!(track_id)
 
@@ -15,8 +17,8 @@ module Radio5
 
       # TODO: technically, API accepts an array of countries, but without premium
       # account only the first one is used during filtering.
-      # `country` should be used for now
-      # `countries` might be added in a future after implementation of auth
+      #   `country` should be used for now
+      #   `countries` might be added in a future after implementation of auth
 
       # rubocop:disable Layout/HashAlignment
       def random_track(country: nil, decades: [], moods: MOODS)
@@ -102,7 +104,7 @@ module Radio5
 
         def self.track_audio(json, format)
           url = json.fetch(:links).fetch(format)
-          url.gsub!(/#t=\d*,\d+/, "")
+          url.gsub!(/#t=\d*,\d+/, "") # remove play time limit
 
           expires_at_unix = Integer(url[/(?<=expires=)\d+/])
           expires_at = parse_unix_timestamp(expires_at_unix)
