@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://radiooooo.com/contributor/uploaded/5d3306de06fb03d8871fd138?page=2&size=3&status=broken
+    uri: https://radiooooo.com/contributor/uploaded/5d3306de06fb03d8871fd138?page=2&size=3&status=duplicate
     body:
       encoding: US-ASCII
       string: ''
@@ -24,11 +24,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 10 Jan 2024 16:31:09 GMT
+      - Fri, 09 Feb 2024 13:47:46 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '975'
       Connection:
       - keep-alive
       X-Dns-Prefetch-Control:
@@ -44,17 +44,17 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       Etag:
-      - W/"456-Qp5DMYfuYT/n4fYaLacvWX4txJI"
+      - W/"3cf-QZLynQ1KMZohnAXwpdBhZDx5YcA"
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - connect.sid=s%3A28183501-a2b7-48b0-9f85-bb970022468e.63L428aUWqNfI7Oety2wjk5btSCJNKmnyvtbqVXdHlk;
-        Path=/; Expires=Fri, 09 Feb 2024 16:31:09 GMT; HttpOnly
+      - connect.sid=s%3A5d71e81a-c959-42fb-876b-932546501b5c.o8QkbhS%2BCBQlX4gVDlVukvnhKujYHiMbVRUi5h64VMI;
+        Path=/; Expires=Sun, 10 Mar 2024 13:47:46 GMT; HttpOnly
     body:
-      encoding: ASCII-8BIT
-      string: '[{"_id":"64938db8a11bd56c56a5ae0c","ext":{"cover":"jpg","track":"mp3"},"status":"broken","country":"FRA","decade":2000,"likes":0,"image":{"path":"cover/FRA/2000/","filename":"902742e9-bd41-4496-9367-0358b436e811.jpg"},"image_v":0,"year":"2009","title":"It
-        Takes A Muscle To Fall In Love [Get A Room Edit]","artist":"Spectral Display","uuid":"902742e9-bd41-4496-9367-0358b436e811","liked":0},{"_id":"649383a183aea76ccb3fdb47","ext":{"cover":"jpg","track":"mp3"},"status":"broken","country":"GBR","decade":2000,"likes":0,"image":{"path":"cover/GBR/2000/","filename":"5fd48405-33b7-4565-88c5-043c4ede86b4.jpg"},"image_v":0,"year":"2006","title":"Monkey
-        Overbite","artist":"The Emperor Machine","uuid":"5fd48405-33b7-4565-88c5-043c4ede86b4","liked":0},{"_id":"6453c4a141304a5311e17e6c","ext":{"cover":"jpg","track":"mp3"},"status":"broken","country":"GBR","decade":2000,"likes":0,"image":{"path":"cover/GBR/2000/","filename":"324461eb-5cc9-4001-ab2e-ce9f79cf30a9.jpg"},"image_v":0,"year":"2003","title":"State
-        Of Grace (Original LP Mix)","artist":"Swayzak","uuid":"324461eb-5cc9-4001-ab2e-ce9f79cf30a9","liked":0}]'
-  recorded_at: Wed, 10 Jan 2024 16:31:09 GMT
+      encoding: UTF-8
+      string: '[{"_id":"65a20795b712bd74a529fe81","ext":{"cover":"jpg","track":"m4a"},"status":"duplicate","country":"FRA","decade":2010,"likes":0,"image_v":0,"year":"2017","title":"The
+        Movement","artist":"4th Sign","uuid":"1660a8ce-889f-4bb3-9302-07ec2b57b26c","liked":0},{"_id":"6493a8115c9db16d1ba8b782","ext":{"cover":"jpg","track":"mp3"},"status":"duplicate","country":"USA","decade":1970,"likes":0,"image":{"path":"cover/USA/1970/","filename":"76e9acf6-cbe8-4844-b66b-acb03f017dd4.jpg"},"image_v":0,"year":"1979","title":"Baby","artist":"Donnie
+        & Joe Emerson","uuid":"76e9acf6-cbe8-4844-b66b-acb03f017dd4","liked":0},{"_id":"6493a774a11bd56c56a5d752","ext":{"cover":"jpg","track":"m4a"},"status":"duplicate","country":"USA","decade":1970,"likes":0,"image":{"path":"cover/USA/1970/","filename":"7db15348-2019-44a8-ab5c-9739fdc3c028.jpg"},"image_v":0,"year":"1972","title":"Down
+        By the River","artist":"Neil Young & Crazy Horse","uuid":"7db15348-2019-44a8-ab5c-9739fdc3c028","liked":0}]'
+  recorded_at: Fri, 09 Feb 2024 13:47:46 GMT
 recorded_with: VCR 6.2.0
