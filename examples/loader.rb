@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-require "radio5"
-require "slop"
-require "colorize"
-require "fileutils"
-require "json"
-require "set"
-
 ##
 # Universal tracks loader
 #
@@ -21,9 +14,16 @@ require "set"
 #   load tracks using filters
 #     ruby loader.rb -c FRA -d 1960,1980,1990 -m weird,slow
 #
-# All opts:
+# All usage opts:
 #   ruby loader.rb -h
 #
+
+require "radio5"
+require "slop"
+require "colorize"
+require "fileutils"
+require "json"
+require "set"
 
 DEFAULT_OPTS = {
   folder_path: "~/Downloads/radio5_music",
