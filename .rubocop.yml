@@ -12,7 +12,6 @@ AllCops:
     - 'bin/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
-    - 'Gemfile'
   DisplayCopNames: true
   SuggestExtensions: false
   NewCops: disable
