@@ -22,7 +22,6 @@ RSpec.describe Radio5::Client::Islands do
 
   # TODO: cover all possible variations with fields presence/values
 
-  # rubocop:disable Layout/HashAlignment
   def expect_valid_island(island)
     expect(island).to match(
       id:              be_mongo_id,
@@ -48,5 +47,4 @@ RSpec.describe Radio5::Client::Islands do
       updated_by:      be_mongo_id.or(be_nil)
     )
   end
-  # rubocop:enable Layout/HashAlignment
 end

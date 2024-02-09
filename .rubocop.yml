@@ -22,3 +22,6 @@ Style/FrozenStringLiteralComment:
 
 Layout/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: true
+
+Layout/HashAlignment:
+  Enabled: false

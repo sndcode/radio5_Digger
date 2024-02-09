@@ -3,6 +3,8 @@
 module Radio5
   class Client
     module Tracks
+      include Constants
+
       def track(track_id)
         validate_track_id!(track_id)
 
@@ -15,10 +17,8 @@ module Radio5
 
       # TODO: technically, API accepts an array of countries, but without premium
       # account only the first one is used during filtering.
-      # `country` should be used for now
-      # `countries` might be added in a future after implementation of auth
-
-      # rubocop:disable Layout/HashAlignment
+      #   `country` should be used for now
+      #   `countries` might be added in a future after implementation of auth
       def random_track(country: nil, decades: [], moods: MOODS)
         iso_codes = country ? [country] : []
 
@@ -39,9 +39,7 @@ module Radio5
       rescue Api::MatchingTrackNotFound
         nil
       end
-      # rubocop:enable Layout/HashAlignment
 
-      # rubocop:disable Layout/HashAlignment
       def island_track(island_id:, moods: MOODS)
         validate_island_id!(island_id)
         validate_moods!(moods)
@@ -58,12 +56,10 @@ module Radio5
       rescue Api::MatchingTrackNotFound
         nil
       end
-      # rubocop:enable Layout/HashAlignment
 
       module Parser
         extend Utils
 
-        # rubocop:disable Layout/HashAlignment
         def self.track_info(json)
           created_node = json[:created]
           created_at = created_node && parse_time_string(created_node.fetch(:date))
@@ -98,11 +94,10 @@ module Radio5
             created_by:  created_by
           }
         end
-        # rubocop:enable Layout/HashAlignment
 
         def self.track_audio(json, format)
           url = json.fetch(:links).fetch(format)
-          url.gsub!(/#t=\d*,\d+/, "")
+          url.gsub!(/#t=\d*,\d+/, "") # remove play time limit
 
           expires_at_unix = Integer(url[/(?<=expires=)\d+/])
           expires_at = parse_unix_timestamp(expires_at_unix)

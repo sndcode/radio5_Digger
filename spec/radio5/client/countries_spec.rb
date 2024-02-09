@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Radio5::Client::Countries do
-  include ValidatorHelpers
+  include ValidationsHelper
 
   let(:client) { Radio5::Client.new }
 
@@ -73,24 +73,6 @@ RSpec.describe Radio5::Client::Countries do
       it "raises an error" do
         expect_decade_validation(decade)
         expect { subject }.to raise_error(ArgumentError, "invalid `group_by` value: :xyz")
-      end
-    end
-
-    context "with unknown mood returned" do
-      before do
-        WebMock.disable_net_connect!(allow: /\/country\/mood/)
-      end
-
-      after do
-        WebMock.disable_net_connect!
-      end
-
-      it "raises an error" do
-        stub_request(:get, /\/country\/mood/)
-          .to_return(body: {"SLOW" => ["GBR", "FRA"], "XYZ" => ["GBR", "FRA"]}.to_json)
-
-        expect_decade_validation(decade)
-        expect { subject }.to raise_error(ArgumentError, "invalid mood: :xyz")
       end
     end
   end

@@ -52,7 +52,6 @@ module Radio5
       end
     end
 
-    # rubocop:disable Layout/HashAlignment
     def create_http
       Http.new(
         host:          HOST,
@@ -65,6 +64,5 @@ module Radio5
         debug_output:  client.debug_output
       )
     end
-    # rubocop:enable Layout/HashAlignment
   end
 end

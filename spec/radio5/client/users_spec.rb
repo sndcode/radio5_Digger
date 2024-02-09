@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Radio5::Client::Users do
-  include ValidatorHelpers
+  include ValidationsHelper
 
   let(:client) { Radio5::Client.new }
 
@@ -43,7 +43,7 @@ RSpec.describe Radio5::Client::Users do
         it "returns all tracks" do
           expect_user_id_validation(user_id)
           expect_user_track_status_validation(:on_air)
-          expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+          expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
           expect_page_number_validation(1)
 
           vcr("client/user_tracks/user_found") do
@@ -80,7 +80,7 @@ RSpec.describe Radio5::Client::Users do
       it "returns empty array" do
         expect_user_id_validation(user_id)
         expect_user_track_status_validation(:on_air)
-        expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+        expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
         expect_page_number_validation(1)
 
         vcr("client/user_tracks/user_not_found") do
@@ -133,7 +133,7 @@ RSpec.describe Radio5::Client::Users do
       context "with default page size" do
         it "returns all tracks" do
           expect_user_id_validation(user_id)
-          expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+          expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
           expect_page_number_validation(1)
 
           vcr("client/user_followers/user_found") do
@@ -167,7 +167,7 @@ RSpec.describe Radio5::Client::Users do
 
       it "returns empty array" do
         expect_user_id_validation(user_id)
-        expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+        expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
         expect_page_number_validation(1)
 
         vcr("client/user_followers/user_not_found") do
@@ -186,7 +186,7 @@ RSpec.describe Radio5::Client::Users do
       context "with default page size" do
         it "returns all tracks" do
           expect_user_id_validation(user_id)
-          expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+          expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
           expect_page_number_validation(1)
 
           vcr("client/user_followings/user_found") do
@@ -220,7 +220,7 @@ RSpec.describe Radio5::Client::Users do
 
       it "returns empty array" do
         expect_user_id_validation(user_id)
-        expect_page_size_validation(Radio5::MAX_PAGE_SIZE)
+        expect_page_size_validation(Radio5::Constants::MAX_PAGE_SIZE)
         expect_page_number_validation(1)
 
         vcr("client/user_followings/user_not_found") do
@@ -257,7 +257,6 @@ RSpec.describe Radio5::Client::Users do
 
   # TODO: cover all possible variations with fields presence/values
 
-  # rubocop:disable Layout/HashAlignment
   def expect_valid_user(user)
     expect(user).to match(
       id:      be_mongo_id,
@@ -324,5 +323,4 @@ RSpec.describe Radio5::Client::Users do
       status:     be_user_track_status
     )
   end
-  # rubocop:enable Layout/HashAlignment
 end

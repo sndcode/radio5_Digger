@@ -5,14 +5,9 @@ require "time"
 
 module Radio5
   module Utils
+    include Constants
+
     module_function
-
-    ASSET_HOST = "https://asset.radiooooo.com"
-
-    IMAGE_SIZES = {
-      track: %i[thumb small medium large],
-      user: %i[icon thumb small medium large]
-    }.freeze
 
     def parse_json(json_raw)
       JSON.parse(json_raw, symbolize_names: true)
