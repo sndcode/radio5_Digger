@@ -13,6 +13,6 @@ gem "rubocop-rspec", require: false
 gem "rubocop-performance", require: false
 gem "rubocop-md", "~> 1.0"
 gem "vcr", "~> 6.2"
-gem 'webmock', '~> 3.19', '>= 3.19.1'
+gem "webmock", "~> 3.20"
 gem "simplecov"
 gem "simplecov-lcov"
