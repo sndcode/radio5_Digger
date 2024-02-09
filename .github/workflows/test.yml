@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  spec:
+  rspec:
     name: spec
     runs-on: ubuntu-latest
     env:
@@ -34,9 +34,9 @@ jobs:
       run: |
         ./coveralls -p --job-flag=ruby-${{ matrix.ruby }}
 
-  spec_no_vcr:
+  rspec_no_vcr:
     name: "spec:no_vcr"
-    needs: spec
+    needs: rspec
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
         bundle exec rake spec:no_vcr
 
   coverage:
-    needs: spec_no_vcr
+    needs: rspec_no_vcr
     runs-on: ubuntu-latest
     env:
       COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
