@@ -54,7 +54,7 @@ RSpec.describe Radio5::Client::Users do
       end
 
       context "with additional filters" do
-        let(:status) { :broken }
+        let(:status) { :duplicate }
         let(:size) { 3 }
         let(:page) { 2 }
 
