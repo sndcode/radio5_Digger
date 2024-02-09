@@ -15,7 +15,7 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.3
+        bundler-cache: true
     - name: Lint docs with RuboCop
       run: |
-        bundle install --jobs 4 --retry 3
         bundle exec rake rubocop:md
