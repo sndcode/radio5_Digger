@@ -8,7 +8,6 @@ on:
 
 jobs:
   rspec:
-    name: spec
     runs-on: ubuntu-latest
     env:
       COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
@@ -48,7 +47,7 @@ jobs:
         ./coveralls -d
 
   rspec_no_vcr:
-    name: "spec:no_vcr"
+    name: "rspec:no_vcr"
     needs: coverage
     runs-on: ubuntu-latest
     steps:
