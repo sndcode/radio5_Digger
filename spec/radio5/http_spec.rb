@@ -91,7 +91,7 @@ RSpec.describe Radio5::Http do
       it "makes specified number of retries" do
         stub_request(:get, /#{Regexp.escape(host)}#{Regexp.escape(path)}/).to_timeout
 
-        expect(http).to receive(:make_request).exactly(3).and_call_original
+        expect(http).to receive(:make_request).exactly(4).and_call_original
         expect { subject }.to raise_error(Net::OpenTimeout)
       end
     end

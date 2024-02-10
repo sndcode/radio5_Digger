@@ -114,12 +114,10 @@ module Radio5
 
     def make_request(request, retries: 0)
       http_client.request(request)
-    rescue *RETRIABLE_ERRORS => error
-      if retries < max_retries
-        make_request(request, retries: retries + 1)
-      else
-        raise error
-      end
+    rescue *RETRIABLE_ERRORS
+      raise if retries > max_retries
+
+      make_request(request, retries: retries + 1)
     end
   end
 end

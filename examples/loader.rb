@@ -156,12 +156,10 @@ class Loader
   def download_file(url, retries: 0)
     uri = URI(url)
     Net::HTTP.get_response(uri).body
-  rescue => error
-    if retries < MAX_RETRIES
-      download_file(url, retries: retries + 1)
-    else
-      raise error
-    end
+  rescue
+    raise if retries > MAX_RETRIES
+
+    download_file(url, retries: retries + 1)
   end
 
   def save_file(path, file)
