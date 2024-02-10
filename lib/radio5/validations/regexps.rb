@@ -5,8 +5,6 @@ module Radio5
     module Regexps
       include Constants
 
-      # rubocop:disable Layout/ExtraSpacing
-
       MONGO_ID     = /\A[a-f\d]{24}\z/.freeze
       UUID_GENERIC = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/.freeze
       UUID         = /\A#{UUID_GENERIC}\z/.freeze
@@ -55,8 +53,6 @@ module Radio5
 
       MPEG_URL = AUDIO_URL.call(["mp3", "m4a"]).freeze
       OGG_URL  = AUDIO_URL.call(["ogg"]).freeze
-
-      # rubocop:enable Layout/ExtraSpacing
     end
   end
 end

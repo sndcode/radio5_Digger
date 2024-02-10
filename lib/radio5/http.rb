@@ -30,7 +30,6 @@ module Radio5
 
     attr_reader :host, :port, :open_timeout, :read_timeout, :write_timeout, :proxy_url, :max_retries, :debug_output, :http_client
 
-    # rubocop:disable Layout/ExtraSpacing
     def initialize(
       host:,
       port:,
@@ -61,7 +60,6 @@ module Radio5
         c.set_debug_output(@debug_output)
       end
     end
-    # rubocop:enable Layout/ExtraSpacing
 
     def proxy_uri
       @proxy_uri ||= parse_proxy_uri

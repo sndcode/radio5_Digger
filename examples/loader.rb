@@ -240,7 +240,6 @@ class Track
   end
 end
 
-# rubocop:disable Layout/ExtraSpacing
 if __FILE__ == $0
   opts = Slop.parse do |o|
     o.string  "-c", "--country", "country ISO code, e.g. FRA"
@@ -264,4 +263,3 @@ if __FILE__ == $0
   loader = Loader.new(opts)
   loader.start
 end
-# rubocop:enable Layout/ExtraSpacing
