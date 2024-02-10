@@ -5,7 +5,7 @@ inherit_gem:
   standard: config/base.yml
 
 inherit_from:
-  - .rubocop-rspec.yml
+  - .rubocop/rspec.yml
 
 AllCops:
   Exclude:
@@ -24,4 +24,7 @@ Layout/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: true
 
 Layout/HashAlignment:
+  Enabled: false
+
+Layout/ExtraSpacing:
   Enabled: false
