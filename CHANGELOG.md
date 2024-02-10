@@ -1,3 +1,8 @@
+0.2.3
+----------
+
+- Fixed incorrect HTTP requests retries counting
+
 0.2.2
 ----------
 
