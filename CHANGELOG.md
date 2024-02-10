@@ -1,3 +1,9 @@
+0.2.2
+----------
+
+- Refactored constants and validations
+- Refactored `Countries.countries_for_decade` method
+
 0.2.1
 ----------
 
