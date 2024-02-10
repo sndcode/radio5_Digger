@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 ##
-# Universal tracks loader
+# Universal track loader
 #
 # Install additional gems:
 #   gem install slop
 #   gem install colorize
 #
 # Default paths:
-#   main folder:   "~/Downloads/radio5_music"
-#   tracks folder: "~/Downloads/radio5_music/tracks"
-#   catalog file:  "~/Downloads/radio5_music/catalog.txt"
+#   main folder:   ~/Downloads/radio5_music
+#   tracks folder: <main_folder>/tracks
+#   catalog file:  <main_folder>/catalog.txt
 #
 # Usage:
 #   load random tracks using default main folder
@@ -29,7 +29,7 @@
 #     > ruby loader.rb -a ogg
 #
 #   ignore tracks that appeared previously (default: true)
-#   unique track hashes are stored in `catalog.txt` in the main folder
+#   unique track IDs are saved to `catalog.txt` in the main folder
 #   if you want to reset the catalog - just delete the file
 #     > ruby loader.rb -u true
 #
