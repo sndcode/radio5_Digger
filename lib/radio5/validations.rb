@@ -4,8 +4,8 @@ module Radio5
   module Validations
     module_function
 
-    include Matchers
     extend Matchers
+    include Matchers
 
     def validate!
       yield
