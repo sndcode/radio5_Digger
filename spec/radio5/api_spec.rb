@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Radio5::Api do
   let(:client) { Radio5::Client.new }
 
-  subject { client.random_track }
+  subject(:random_track) { client.random_track }
 
   before :all do
     WebMock.disable_net_connect!(allow: /\/play$/)
@@ -20,7 +20,7 @@ RSpec.describe Radio5::Api do
       stub_request(:post, /\/play$/)
         .to_return(body: {"error" => "Other API error"}.to_json)
 
-      expect { subject }.to raise_error(Radio5::Api::Error, "Other API error")
+      expect { random_track }.to raise_error(Radio5::Api::Error, "Other API error")
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Radio5::Api do
           body: "tea is better than coffee"
         )
 
-      expect { subject }.to raise_error(
+      expect { random_track }.to raise_error(
         Radio5::Api::UnexpectedResponse,
         "code: \"418\", body: \"tea is better than coffee\""
       )

@@ -8,13 +8,13 @@ RSpec.describe Radio5::Client::Countries do
   let(:client) { Radio5::Client.new }
 
   describe "#countries" do
-    subject { client.countries }
+    subject(:countries) { client.countries }
 
     it "returns countries hash" do
       vcr("client/countries/en") do
-        expect(subject.size).to be > 200
+        expect(countries.size).to be > 200
 
-        subject.each do |iso_code, country|
+        countries.each do |iso_code, country|
           expect(iso_code).to be_country_iso_code
           expect(country).to match(
             name: be_filled_string,
@@ -29,19 +29,19 @@ RSpec.describe Radio5::Client::Countries do
   describe "#countries_for_decade" do
     let(:decade) { 1970 }
 
-    subject { client.countries_for_decade(decade) }
+    subject(:countries_for_decade) { client.countries_for_decade(decade) }
 
     context "when grouped by country" do
       it "returns country-to-moods hash" do
         expect_decade_validation(decade)
 
         vcr("client/countries_for_decade/#{decade}") do
-          expect(subject).to_not be_empty
+          expect(countries_for_decade).not_to be_empty
 
-          subject.each do |country, moods|
+          countries_for_decade.each do |country, moods|
             expect(country).to be_country_iso_code
 
-            expect(moods).to_not be_empty
+            expect(moods).not_to be_empty
             expect(moods).to all be_mood
           end
         end
@@ -49,18 +49,18 @@ RSpec.describe Radio5::Client::Countries do
     end
 
     context "when grouped by mood" do
-      subject { client.countries_for_decade(decade, group_by: :mood) }
+      subject(:countries_for_decade) { client.countries_for_decade(decade, group_by: :mood) }
 
       it "returns mood-to-countries hash" do
         vcr("client/countries_for_decade/#{decade}") do
           expect_decade_validation(decade)
 
-          expect(subject).to_not be_empty
+          expect(countries_for_decade).not_to be_empty
 
-          subject.each do |mood, countries|
+          countries_for_decade.each do |mood, countries|
             expect(mood).to be_mood
 
-            expect(countries).to_not be_empty
+            expect(countries).not_to be_empty
             expect(countries).to all be_country_iso_code
           end
         end
@@ -68,11 +68,11 @@ RSpec.describe Radio5::Client::Countries do
     end
 
     context "when unsupported `group_by` value provided" do
-      subject { client.countries_for_decade(decade, group_by: :xyz) }
+      subject(:countries_for_decade) { client.countries_for_decade(decade, group_by: :xyz) }
 
       it "raises an error" do
         expect_decade_validation(decade)
-        expect { subject }.to raise_error(ArgumentError, "invalid `group_by` value: :xyz")
+        expect { countries_for_decade }.to raise_error(ArgumentError, "invalid `group_by` value: :xyz")
       end
     end
   end

@@ -8,7 +8,7 @@ RSpec.describe Radio5::Client::Users do
   let(:client) { Radio5::Client.new }
 
   describe "#user" do
-    subject { client.user(user_id) }
+    subject(:user) { client.user(user_id) }
 
     context "when user found" do
       let(:user_id) { "5d3306de06fb03d8871fd138" }
@@ -16,7 +16,7 @@ RSpec.describe Radio5::Client::Users do
       it "returns user info" do
         vcr("client/user/found") do
           expect_user_id_validation(user_id)
-          expect_valid_user(subject)
+          expect_valid_user(user)
         end
       end
     end
@@ -27,14 +27,14 @@ RSpec.describe Radio5::Client::Users do
       it "returns nil" do
         vcr("client/user/not_found") do
           expect_user_id_validation(user_id)
-          expect(subject).to be_nil
+          expect(user).to be_nil
         end
       end
     end
   end
 
   describe "#user_tracks" do
-    subject { client.user_tracks(user_id) }
+    subject(:user_tracks) { client.user_tracks(user_id) }
 
     context "when user exists" do
       let(:user_id) { "5d3306de06fb03d8871fd138" }
@@ -47,8 +47,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(1)
 
           vcr("client/user_tracks/user_found") do
-            expect(subject.size).to be > 500
-            subject.each { |track| expect_valid_user_track(track) }
+            expect(user_tracks.size).to be > 500
+            user_tracks.each { |track| expect_valid_user_track(track) }
           end
         end
       end
@@ -58,7 +58,7 @@ RSpec.describe Radio5::Client::Users do
         let(:size) { 3 }
         let(:page) { 2 }
 
-        subject { client.user_tracks(user_id, status: status, size: size, page: page) }
+        subject(:user_tracks) { client.user_tracks(user_id, status: status, size: size, page: page) }
 
         it "returns selected tracks" do
           expect_user_id_validation(user_id)
@@ -67,8 +67,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(page)
 
           vcr("client/user_tracks/user_found_plus_filters") do
-            expect(subject.size).to eq 3
-            subject.each { |track| expect_valid_user_track(track) }
+            expect(user_tracks.size).to eq 3
+            user_tracks.each { |track| expect_valid_user_track(track) }
           end
         end
       end
@@ -84,14 +84,14 @@ RSpec.describe Radio5::Client::Users do
         expect_page_number_validation(1)
 
         vcr("client/user_tracks/user_not_found") do
-          expect(subject).to eq []
+          expect(user_tracks).to eq []
         end
       end
     end
   end
 
   describe "#user_follow_counts" do
-    subject { client.user_follow_counts(user_id) }
+    subject(:user_follow_counts) { client.user_follow_counts(user_id) }
 
     context "when user exists" do
       let(:user_id) { "5d3306de06fb03d8871fd138" }
@@ -100,7 +100,7 @@ RSpec.describe Radio5::Client::Users do
         expect_user_id_validation(user_id)
 
         vcr("client/user_follow_counts/user_found") do
-          expect(subject).to match(
+          expect(user_follow_counts).to match(
             followings: be_positive_number,
             followers: be_positive_number
           )
@@ -115,7 +115,7 @@ RSpec.describe Radio5::Client::Users do
         expect_user_id_validation(user_id)
 
         vcr("client/user_follow_counts/user_not_found") do
-          expect(subject).to match(
+          expect(user_follow_counts).to match(
             followings: 0,
             followers: 0
           )
@@ -125,7 +125,7 @@ RSpec.describe Radio5::Client::Users do
   end
 
   describe "#user_followers" do
-    subject { client.user_followers(user_id) }
+    subject(:user_followers) { client.user_followers(user_id) }
 
     context "when user exists" do
       let(:user_id) { "5d3306de06fb03d8871fd138" }
@@ -137,8 +137,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(1)
 
           vcr("client/user_followers/user_found") do
-            expect(subject.size).to be > 800
-            subject.each { |user| expect_valid_follow_user(user) }
+            expect(user_followers.size).to be > 800
+            user_followers.each { |user| expect_valid_follow_user(user) }
           end
         end
       end
@@ -147,7 +147,7 @@ RSpec.describe Radio5::Client::Users do
         let(:size) { 3 }
         let(:page) { 2 }
 
-        subject { client.user_followers(user_id, size: size, page: page) }
+        subject(:user_followers) { client.user_followers(user_id, size: size, page: page) }
 
         it "returns selected tracks" do
           expect_user_id_validation(user_id)
@@ -155,8 +155,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(page)
 
           vcr("client/user_followers/user_found_plus_filters") do
-            expect(subject.size).to eq 3
-            subject.each { |user| expect_valid_follow_user(user) }
+            expect(user_followers.size).to eq 3
+            user_followers.each { |user| expect_valid_follow_user(user) }
           end
         end
       end
@@ -171,14 +171,14 @@ RSpec.describe Radio5::Client::Users do
         expect_page_number_validation(1)
 
         vcr("client/user_followers/user_not_found") do
-          expect(subject).to eq []
+          expect(user_followers).to eq []
         end
       end
     end
   end
 
   describe "#user_followings" do
-    subject { client.user_followings(user_id) }
+    subject(:user_followings) { client.user_followings(user_id) }
 
     context "when user exists" do
       let(:user_id) { "5d3306de06fb03d8871fd138" }
@@ -190,8 +190,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(1)
 
           vcr("client/user_followings/user_found") do
-            expect(subject.size).to be > 10
-            subject.each { |user| expect_valid_follow_user(user) }
+            expect(user_followings.size).to be > 10
+            user_followings.each { |user| expect_valid_follow_user(user) }
           end
         end
       end
@@ -200,7 +200,7 @@ RSpec.describe Radio5::Client::Users do
         let(:size) { 3 }
         let(:page) { 2 }
 
-        subject { client.user_followers(user_id, size: size, page: page) }
+        subject(:user_followings) { client.user_followers(user_id, size: size, page: page) }
 
         it "returns selected tracks" do
           expect_user_id_validation(user_id)
@@ -208,8 +208,8 @@ RSpec.describe Radio5::Client::Users do
           expect_page_number_validation(page)
 
           vcr("client/user_followings/user_found_plus_filters") do
-            expect(subject.size).to eq 3
-            subject.each { |user| expect_valid_follow_user(user) }
+            expect(user_followings.size).to eq 3
+            user_followings.each { |user| expect_valid_follow_user(user) }
           end
         end
       end
@@ -224,17 +224,20 @@ RSpec.describe Radio5::Client::Users do
         expect_page_number_validation(1)
 
         vcr("client/user_followings/user_not_found") do
-          expect(subject).to eq []
+          expect(user_followings).to eq []
         end
       end
     end
   end
 
   describe "#user_liked_tracks" do
-    subject { client.user_liked_tracks }
+    subject(:user_liked_tracks) { client.user_liked_tracks }
 
     it "raises an error" do
-      expect { subject }.to raise_error(NotImplementedError, "depends on auth")
+      expect { user_liked_tracks }.to raise_error(
+        NotImplementedError,
+        "depends on auth"
+      )
     end
   end
 

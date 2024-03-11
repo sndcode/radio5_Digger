@@ -6,14 +6,14 @@ RSpec.describe Radio5::Client::Islands do
   let(:client) { Radio5::Client.new }
 
   describe "#islands" do
-    subject { client.islands }
+    subject(:islands) { client.islands }
 
     it "returns list of islands" do
       vcr("client/islands/all") do
-        expect(subject.size).to be > 250
+        expect(islands.size).to be > 250
 
         # with large collections it's easier to debug with match per object
-        subject.each do |island|
+        islands.each do |island|
           expect_valid_island(island)
         end
       end

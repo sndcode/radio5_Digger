@@ -8,7 +8,7 @@ RSpec.describe Radio5::Client::Tracks do
   let(:client) { Radio5::Client.new }
 
   describe "#track" do
-    subject { client.track(track_id) }
+    subject(:track) { client.track(track_id) }
 
     context "when track found" do
       let(:track_id) { "5d330a4506fb03d8872a333d" }
@@ -16,7 +16,7 @@ RSpec.describe Radio5::Client::Tracks do
       it "returns track info" do
         vcr("client/track/found") do
           expect_track_id_validation(track_id)
-          expect_valid_track(subject)
+          expect_valid_track(track)
         end
       end
     end
@@ -27,14 +27,14 @@ RSpec.describe Radio5::Client::Tracks do
       it "returns nil" do
         vcr("client/track/not_found") do
           expect_track_id_validation(track_id)
-          expect(subject).to be_nil
+          expect(track).to be_nil
         end
       end
     end
   end
 
   describe "#random_track" do
-    subject { client.random_track }
+    subject(:random_track) { client.random_track }
 
     context "when matching track found" do
       it "returns track info" do
@@ -43,7 +43,7 @@ RSpec.describe Radio5::Client::Tracks do
         expect_moods_validation(Radio5::Constants::MOODS)
 
         vcr("client/random_track/found") do
-          expect_valid_track(subject)
+          expect_valid_track(random_track)
         end
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe Radio5::Client::Tracks do
       let(:decades) { [1920, 1930] }
       let(:moods) { [:slow, :weird] }
 
-      subject { client.random_track(country: country, decades: decades, moods: moods) }
+      subject(:random_track) { client.random_track(country: country, decades: decades, moods: moods) }
 
       it "returns nil" do
         expect_country_iso_codes_validation([country])
@@ -61,7 +61,7 @@ RSpec.describe Radio5::Client::Tracks do
         expect_moods_validation(moods)
 
         vcr("client/random_track/not_found") do
-          expect(subject).to be_nil
+          expect(random_track).to be_nil
         end
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe Radio5::Client::Tracks do
   describe "#island_track" do
     let(:island_id) { "5d330a3e06fb03d8872a330d" }
 
-    subject { client.island_track(island_id: island_id) }
+    subject(:random_track) { client.island_track(island_id: island_id) }
 
     context "when matching track found" do
       it "returns track info" do
@@ -78,7 +78,7 @@ RSpec.describe Radio5::Client::Tracks do
         expect_moods_validation(Radio5::Constants::MOODS)
 
         vcr("client/island_track/found") do
-          expect_valid_track(subject)
+          expect_valid_track(random_track)
         end
       end
     end
@@ -86,14 +86,14 @@ RSpec.describe Radio5::Client::Tracks do
     context "when matching track not found" do
       let(:moods) { [:weird] }
 
-      subject { client.island_track(island_id: island_id, moods: moods) }
+      subject(:random_track) { client.island_track(island_id: island_id, moods: moods) }
 
       it "returns nil" do
         expect_island_id_validation(island_id)
         expect_moods_validation(moods)
 
         vcr("client/island_track/not_found") do
-          expect(subject).to be_nil
+          expect(random_track).to be_nil
         end
       end
     end
