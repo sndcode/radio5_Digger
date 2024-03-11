@@ -13,7 +13,7 @@ module Radio5
       COUNTRY_ISO_CODE         = /\A#{COUNTRY_ISO_CODE_GENERIC}\z/.freeze
 
       # NOTE: everything below is used within RSpec custom matchers, they might be
-      # migrated to regular validations matchers in future, in case there will be
+      # migrated to regular validations matchers in future - in case there will be
       # a need to validate fields in response payloads on the fly
 
       ASSET_URL = lambda do |sub_path, exts, size = nil|
