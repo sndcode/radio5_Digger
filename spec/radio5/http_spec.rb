@@ -99,7 +99,7 @@ RSpec.describe Radio5::Http do
       it "raises an error immidiately" do
         allow(http.http_client).to receive(:request).and_raise(StandardError, "Some error")
 
-        expect(http).to receive(:make_request).exactly(1).and_call_original
+        expect(http).to receive(:make_request).once.and_call_original
         expect { request }.to raise_error(StandardError, "Some error")
       end
     end

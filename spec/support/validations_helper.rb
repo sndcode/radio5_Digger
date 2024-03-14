@@ -7,7 +7,7 @@ module ValidationsHelper
     expect_any_instance_of(Radio5::Validations)
       .to receive(method)
       .with(*args)
-      .exactly(1)
+      .once
   end
 
   def expect_track_id_validation(track_id)

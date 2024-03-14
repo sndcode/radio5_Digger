@@ -82,7 +82,7 @@ RSpec.describe Radio5::Validations do
           expect(described_class)
             .to receive(:validate_country_iso_code!)
             .with(iso_code)
-            .exactly(1)
+            .once
         end
 
         expect(subject).to eq true
@@ -129,7 +129,7 @@ RSpec.describe Radio5::Validations do
           expect(described_class)
             .to receive(:validate_decade!)
             .with(decade)
-            .exactly(1)
+            .once
         end
 
         expect(subject).to eq true
@@ -176,7 +176,7 @@ RSpec.describe Radio5::Validations do
           expect(described_class)
             .to receive(:validate_mood!)
             .with(mood)
-            .exactly(1)
+            .once
         end
 
         expect(subject).to eq true
@@ -268,7 +268,7 @@ RSpec.describe Radio5::Validations do
     allow(described_class)
       .to receive(method)
       .with(*args)
-      .exactly(1)
+      .once
       .and_return(result)
   end
 end
