@@ -6,7 +6,7 @@ RSpec.describe Radio5::Http do
   let(:host) { "host.com" }
   let(:port) { 443 }
 
-  describe "#new" do
+  describe ".new" do
     context "with default config" do
       subject(:http) { described_class.new(host: host, port: port) }
 

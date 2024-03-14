@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Radio5::Client do
   let(:client) { described_class.new }
 
-  describe "#new" do
+  describe ".new" do
     it "assigns default params" do
       expect(client).to have_attributes(
         open_timeout: 10,
@@ -19,13 +19,13 @@ RSpec.describe Radio5::Client do
   end
 
   describe "#decades" do
-    it "returns decades constant" do
+    it "returns list of decades" do
       expect(client.decades).to eq Radio5::Constants::DECADES
     end
   end
 
   describe "#moods" do
-    it "returns moods constant" do
+    it "returns list of moods" do
       expect(client.moods).to eq Radio5::Constants::MOODS
     end
   end
