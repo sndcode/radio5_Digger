@@ -12,7 +12,8 @@ end
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
-RSpec::Core::RakeTask.new("spec:no_vcr") do |_|
+desc "Run RSpec code examples without VCR cassettes"
+task "spec:no_vcr" do
   ENV["NO_VCR"] = "1"
 
   Rake::Task["spec"].invoke
