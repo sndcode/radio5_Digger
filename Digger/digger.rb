@@ -3,6 +3,11 @@ require "net/http"
 require "uri"
 require "fileutils"
 require "pathname"
+require "thread"
+
+# Constants
+TOTAL_TRACKS = 1000000
+MAX_THREADS = 100
 
 # Create client
 client = Radio5::Client.new
@@ -14,48 +19,63 @@ script_dir = Pathname.new(__FILE__).realpath.dirname
 folder = script_dir.join("download_tracks")
 FileUtils.mkdir_p(folder)
 
-# Download 1000 tracks with filters
-1000.times do |i|
-  puts "Downloading track #{i + 1} of 1000..."
+# Mutex to synchronize file writing
+mutex = Mutex.new
 
-  # Fetch a random track with filters
-  begin
-    track = client.random_track(decades: [1940, 1950, 1960, 1970], moods: [:slow, :weird])
-  rescue KeyError => e
-    puts "Skipped track due to missing key: #{e.message}"
-    next
-  rescue StandardError => e
-    puts "Unexpected error fetching track: #{e.message}"
-    next
-  end
+# Queue to hold work items
+queue = Queue.new
+TOTAL_TRACKS.times { queue << true }
 
-  # Skip if no track found
-  unless track
-    puts "No track found for the given filters."
-    next
-  end
+# Worker threads
+threads = MAX_THREADS.times.map do |thread_id|
+  Thread.new do
+    loop do
+      begin
+        queue.pop(true)
+      rescue ThreadError
+        break  # Queue is empty, exit loop
+      end
 
-  artist = track[:artist].to_s.strip
-  title = track[:title].to_s.strip
+      begin
+        puts "[Thread #{thread_id}] Fetching track..."
 
-  # Build a safe filename
-  filename = "#{artist} - #{title}".gsub(/[\/:*?\"<>|]/, "_") + ".mp3"
-  filepath = folder.join(filename)
+        track = client.random_track(decades: [1940, 1950, 1960, 1970], moods: [:slow, :weird])
+        next unless track
 
-  # Fetch and save the audio
-  audio_url = track.dig(:audio, :mpeg, :url)
+        artist = track[:artist].to_s.strip
+        title = track[:title].to_s.strip
+        filename = "#{artist} - #{title}".gsub(/[\/:*?"<>|]/, "_") + ".mp3"
+        filepath = folder.join(filename)
 
-  if audio_url
-    begin
-      audio_file = Net::HTTP.get_response(URI(audio_url)).body
-      File.open(filepath, "wb") { |f| f << audio_file }
-      puts "Saved: #{filename}"
-    rescue StandardError => e
-      puts "Failed to download #{filename}: #{e.message}"
+        # Skip if file already exists
+        if filepath.exist?
+          puts "[Thread #{thread_id}] Already exists: #{filename}, skipping."
+          next
+        end
+
+        audio_url = track.dig(:audio, :mpeg, :url)
+        unless audio_url
+          puts "[Thread #{thread_id}] No audio URL for #{artist} - #{title}"
+          next
+        end
+
+        response = Net::HTTP.get_response(URI(audio_url))
+        audio_file = response.body
+
+        mutex.synchronize do
+          File.open(filepath, "wb") { |f| f << audio_file }
+          puts "[Thread #{thread_id}] Saved: #{filename}"
+        end
+      rescue KeyError => e
+        puts "[Thread #{thread_id}] Skipped due to missing key: #{e.message}"
+      rescue StandardError => e
+        puts "[Thread #{thread_id}] Error: #{e.message}"
+      end
     end
-  else
-    puts "No audio URL for #{artist} - #{title}"
   end
 end
+
+# Wait for all threads to finish
+threads.each(&:join)
 
 puts "All done! Tracks saved to: #{folder}"
